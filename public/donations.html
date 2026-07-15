@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             </div>
             <h3 class="ul-donation-title">${d.title}</h3>
             <p class="ul-donation-descr">${d.description || ''}</p>
-            <a href="/donation/${d.id}" class="ul-donation-btn">Donate Now <i class="flaticon-fast-forward-double-right-arrows-symbol"></i></a>
+            <a href="/donation?id=${d.id}" class="ul-donation-btn">Donate Now <i class="flaticon-fast-forward-double-right-arrows-symbol"></i></a>
           </div>
         </div>`;
     }).join('');

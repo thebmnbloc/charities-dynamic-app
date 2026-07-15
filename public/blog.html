@@ -77,8 +77,8 @@ document.addEventListener('DOMContentLoaded', async function() {
                 <div class="ul-blog-info"><i class="flaticon-user"></i> ${b.author || 'Admin'}</div>
                 <div class="ul-blog-info"><i class="flaticon-tag"></i> ${b.category || ''}</div>
               </div>
-              <h3 class="ul-blog-title"><a href="/blog/${b.id}">${b.title}</a></h3>
-              <a href="/blog/${b.id}" class="ul-blog-btn">Read More <span class="icon"><i class="flaticon-fast-forward-double-right-arrows-symbol"></i></span></a>
+              <h3 class="ul-blog-title"><a href="/blog?id=${b.id}">${b.title}</a></h3>
+              <a href="/blog?id=${b.id}" class="ul-blog-btn">Read More <span class="icon"><i class="flaticon-fast-forward-double-right-arrows-symbol"></i></span></a>
             </div>
           </div>
         </div>`;

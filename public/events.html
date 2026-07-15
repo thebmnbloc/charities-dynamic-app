@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                 <p class="ul-event-info-title">Venue</p>
                 <p class="ul-event-info-descr">${e.venue || ''}</p>
               </div>
-              <a href="/event/${e.id}" class="ul-btn" style="margin-top: 15px;"><i class="flaticon-fast-forward-double-right-arrows-symbol"></i> Details</a>
+              <a href="/event?id=${e.id}" class="ul-btn" style="margin-top: 15px;"><i class="flaticon-fast-forward-double-right-arrows-symbol"></i> Details</a>
             </div>
           </div>
         </div>`;

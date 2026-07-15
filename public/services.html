@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', async function() {
           <div class="ul-service-img"><img src="/${s.image}" alt="${s.title}"></div>
           <h3 class="ul-service-title">${s.title}</h3>
           <p class="ul-service-descr">${s.description || ''}</p>
-          <a href="/service/${s.id}" class="ul-service-btn">Read More <i class="flaticon-fast-forward-double-right-arrows-symbol"></i></a>
+          <a href="/service?id=${s.id}" class="ul-service-btn">Read More <i class="flaticon-fast-forward-double-right-arrows-symbol"></i></a>
         </div>
       </div>
     `).join('');

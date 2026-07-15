@@ -69,10 +69,10 @@ document.addEventListener('DOMContentLoaded', async function() {
           <div class="ul-project-img"><img src="/${p.image}" alt="${p.title}"></div>
           <div class="ul-project-txt">
             <div>
-              <h3 class="ul-project-title"><a href="/project/${p.id}">${p.title}</a></h3>
+              <h3 class="ul-project-title"><a href="/project?id=${p.id}">${p.title}</a></h3>
               <p class="ul-project-descr">${p.category || ''}</p>
             </div>
-            <a href="/project/${p.id}" class="ul-project-btn"><i class="flaticon-right-arrow"></i></a>
+            <a href="/project?id=${p.id}" class="ul-project-btn"><i class="flaticon-right-arrow"></i></a>
           </div>
         </div>
       </div>

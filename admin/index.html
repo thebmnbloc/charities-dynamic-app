@@ -497,6 +497,9 @@ catch(e){body[f.name]=[];}
 }
 else{body[f.name]=document.getElementById('f-'+f.name)?.value||'';}
 });
+if(!editingId){body.is_active=true;body.sort_order=0;}
+if(body.is_active===undefined||body.is_active===null)body.is_active=true;
+if(body.sort_order===undefined||body.sort_order===null)body.sort_order=0;
 const url=editingId?`${endpoints[editingType]}/${editingId}`:endpoints[editingType];
 const method=editingId?'PUT':'POST';
 const{ok,data}=await api(url,{method,headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});

@@ -93,10 +93,10 @@ document.addEventListener('DOMContentLoaded', async function() {
           <h4 class="ul-inner-sidebar-widget-title">Recent Posts</h4>
           ${allBlogs.slice(0, 5).map(ob => `
             <div class="ul-inner-sidebar-post">
-              <div class="img"><a href="/blog/${ob.id}"><img src="/${ob.image}" alt="${ob.title}"></a></div>
+              <div class="img"><a href="/blog?id=${ob.id}"><img src="/${ob.image}" alt="${ob.title}"></a></div>
               <div>
                 <div class="date"><span class="icon"><i class="flaticon-calendar"></i></span> ${new Date(ob.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</div>
-                <h5 class="title"><a href="/blog/${ob.id}">${ob.title}</a></h5>
+                <h5 class="title"><a href="/blog?id=${ob.id}">${ob.title}</a></h5>
               </div>
             </div>
           `).join('')}
