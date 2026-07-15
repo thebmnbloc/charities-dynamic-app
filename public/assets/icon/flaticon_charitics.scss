@@ -1,0 +1,305 @@
+$flaticon_charitics-font: "flaticon_charitics";
+
+@font-face {
+    font-family: $flaticon_charitics-font;
+    src: url("./flaticon_charitics.woff2?46578acd7effe4a6a4f6b87164297015") format("woff2"),
+url("./flaticon_charitics.woff?46578acd7effe4a6a4f6b87164297015") format("woff"),
+url("./flaticon_charitics.eot?46578acd7effe4a6a4f6b87164297015#iefix") format("embedded-opentype"),
+url("./flaticon_charitics.ttf?46578acd7effe4a6a4f6b87164297015") format("truetype"),
+url("./flaticon_charitics.svg?46578acd7effe4a6a4f6b87164297015#flaticon_charitics") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon_charitics !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+$flaticon_charitics-map: (
+    "cart": "\f101",
+    "search": "\f102",
+    "fast-forward-double-right-arrows-symbol": "\f103",
+    "right": "\f104",
+    "play": "\f105",
+    "checked": "\f106",
+    "phone-call": "\f107",
+    "telephone-call": "\f108",
+    "telephone": "\f109",
+    "back": "\f10a",
+    "next": "\f10b",
+    "top-right": "\f10c",
+    "up-right-arrow": "\f10d",
+    "up-right-arrow-1": "\f10e",
+    "costumer": "\f10f",
+    "team": "\f110",
+    "box": "\f111",
+    "package": "\f112",
+    "relationship": "\f113",
+    "plus": "\f114",
+    "plus-1": "\f115",
+    "minus-sign": "\f116",
+    "minus": "\f117",
+    "facebook": "\f118",
+    "twitter": "\f119",
+    "linkedin-big-logo": "\f11a",
+    "instagram": "\f11b",
+    "star": "\f11c",
+    "star-1": "\f11d",
+    "quote": "\f11e",
+    "left": "\f11f",
+    "double-quotes": "\f120",
+    "account": "\f121",
+    "price-tag": "\f122",
+    "price-tag-1": "\f123",
+    "youtube": "\f124",
+    "twitter-1": "\f125",
+    "calendar": "\f126",
+    "next-1": "\f127",
+    "mail": "\f128",
+    "email": "\f129",
+    "pin": "\f12a",
+    "telephone-call-1": "\f12b",
+    "check-box-empty": "\f12c",
+    "square": "\f12d",
+    "quote-1": "\f12e",
+    "quotation": "\f12f",
+    "right-1": "\f130",
+    "left-arrow": "\f131",
+    "left-arrow-1": "\f132",
+    "right-up": "\f133",
+    "right-arrow": "\f134",
+    "right-arrow-1": "\f135",
+    "copyright": "\f136",
+    "love": "\f137",
+    "check": "\f138",
+    "tick": "\f139",
+    "check-mark": "\f13a",
+    "radio-button": "\f13b",
+    "radio-button-1": "\f13c",
+    "reply": "\f13d",
+    "comment": "\f13e",
+    "location": "\f13f",
+    "down": "\f140",
+    "pause": "\f141",
+    "menu": "\f142",
+    "dots": "\f143",
+    "menu-1": "\f144",
+    "close": "\f145",
+    "close-1": "\f146",
+);
+
+.flaticon-cart:before {
+    content: map-get($flaticon_charitics-map, "cart");
+}
+.flaticon-search:before {
+    content: map-get($flaticon_charitics-map, "search");
+}
+.flaticon-fast-forward-double-right-arrows-symbol:before {
+    content: map-get($flaticon_charitics-map, "fast-forward-double-right-arrows-symbol");
+}
+.flaticon-right:before {
+    content: map-get($flaticon_charitics-map, "right");
+}
+.flaticon-play:before {
+    content: map-get($flaticon_charitics-map, "play");
+}
+.flaticon-checked:before {
+    content: map-get($flaticon_charitics-map, "checked");
+}
+.flaticon-phone-call:before {
+    content: map-get($flaticon_charitics-map, "phone-call");
+}
+.flaticon-telephone-call:before {
+    content: map-get($flaticon_charitics-map, "telephone-call");
+}
+.flaticon-telephone:before {
+    content: map-get($flaticon_charitics-map, "telephone");
+}
+.flaticon-back:before {
+    content: map-get($flaticon_charitics-map, "back");
+}
+.flaticon-next:before {
+    content: map-get($flaticon_charitics-map, "next");
+}
+.flaticon-top-right:before {
+    content: map-get($flaticon_charitics-map, "top-right");
+}
+.flaticon-up-right-arrow:before {
+    content: map-get($flaticon_charitics-map, "up-right-arrow");
+}
+.flaticon-up-right-arrow-1:before {
+    content: map-get($flaticon_charitics-map, "up-right-arrow-1");
+}
+.flaticon-costumer:before {
+    content: map-get($flaticon_charitics-map, "costumer");
+}
+.flaticon-team:before {
+    content: map-get($flaticon_charitics-map, "team");
+}
+.flaticon-box:before {
+    content: map-get($flaticon_charitics-map, "box");
+}
+.flaticon-package:before {
+    content: map-get($flaticon_charitics-map, "package");
+}
+.flaticon-relationship:before {
+    content: map-get($flaticon_charitics-map, "relationship");
+}
+.flaticon-plus:before {
+    content: map-get($flaticon_charitics-map, "plus");
+}
+.flaticon-plus-1:before {
+    content: map-get($flaticon_charitics-map, "plus-1");
+}
+.flaticon-minus-sign:before {
+    content: map-get($flaticon_charitics-map, "minus-sign");
+}
+.flaticon-minus:before {
+    content: map-get($flaticon_charitics-map, "minus");
+}
+.flaticon-facebook:before {
+    content: map-get($flaticon_charitics-map, "facebook");
+}
+.flaticon-twitter:before {
+    content: map-get($flaticon_charitics-map, "twitter");
+}
+.flaticon-linkedin-big-logo:before {
+    content: map-get($flaticon_charitics-map, "linkedin-big-logo");
+}
+.flaticon-instagram:before {
+    content: map-get($flaticon_charitics-map, "instagram");
+}
+.flaticon-star:before {
+    content: map-get($flaticon_charitics-map, "star");
+}
+.flaticon-star-1:before {
+    content: map-get($flaticon_charitics-map, "star-1");
+}
+.flaticon-quote:before {
+    content: map-get($flaticon_charitics-map, "quote");
+}
+.flaticon-left:before {
+    content: map-get($flaticon_charitics-map, "left");
+}
+.flaticon-double-quotes:before {
+    content: map-get($flaticon_charitics-map, "double-quotes");
+}
+.flaticon-account:before {
+    content: map-get($flaticon_charitics-map, "account");
+}
+.flaticon-price-tag:before {
+    content: map-get($flaticon_charitics-map, "price-tag");
+}
+.flaticon-price-tag-1:before {
+    content: map-get($flaticon_charitics-map, "price-tag-1");
+}
+.flaticon-youtube:before {
+    content: map-get($flaticon_charitics-map, "youtube");
+}
+.flaticon-twitter-1:before {
+    content: map-get($flaticon_charitics-map, "twitter-1");
+}
+.flaticon-calendar:before {
+    content: map-get($flaticon_charitics-map, "calendar");
+}
+.flaticon-next-1:before {
+    content: map-get($flaticon_charitics-map, "next-1");
+}
+.flaticon-mail:before {
+    content: map-get($flaticon_charitics-map, "mail");
+}
+.flaticon-email:before {
+    content: map-get($flaticon_charitics-map, "email");
+}
+.flaticon-pin:before {
+    content: map-get($flaticon_charitics-map, "pin");
+}
+.flaticon-telephone-call-1:before {
+    content: map-get($flaticon_charitics-map, "telephone-call-1");
+}
+.flaticon-check-box-empty:before {
+    content: map-get($flaticon_charitics-map, "check-box-empty");
+}
+.flaticon-square:before {
+    content: map-get($flaticon_charitics-map, "square");
+}
+.flaticon-quote-1:before {
+    content: map-get($flaticon_charitics-map, "quote-1");
+}
+.flaticon-quotation:before {
+    content: map-get($flaticon_charitics-map, "quotation");
+}
+.flaticon-right-1:before {
+    content: map-get($flaticon_charitics-map, "right-1");
+}
+.flaticon-left-arrow:before {
+    content: map-get($flaticon_charitics-map, "left-arrow");
+}
+.flaticon-left-arrow-1:before {
+    content: map-get($flaticon_charitics-map, "left-arrow-1");
+}
+.flaticon-right-up:before {
+    content: map-get($flaticon_charitics-map, "right-up");
+}
+.flaticon-right-arrow:before {
+    content: map-get($flaticon_charitics-map, "right-arrow");
+}
+.flaticon-right-arrow-1:before {
+    content: map-get($flaticon_charitics-map, "right-arrow-1");
+}
+.flaticon-copyright:before {
+    content: map-get($flaticon_charitics-map, "copyright");
+}
+.flaticon-love:before {
+    content: map-get($flaticon_charitics-map, "love");
+}
+.flaticon-check:before {
+    content: map-get($flaticon_charitics-map, "check");
+}
+.flaticon-tick:before {
+    content: map-get($flaticon_charitics-map, "tick");
+}
+.flaticon-check-mark:before {
+    content: map-get($flaticon_charitics-map, "check-mark");
+}
+.flaticon-radio-button:before {
+    content: map-get($flaticon_charitics-map, "radio-button");
+}
+.flaticon-radio-button-1:before {
+    content: map-get($flaticon_charitics-map, "radio-button-1");
+}
+.flaticon-reply:before {
+    content: map-get($flaticon_charitics-map, "reply");
+}
+.flaticon-comment:before {
+    content: map-get($flaticon_charitics-map, "comment");
+}
+.flaticon-location:before {
+    content: map-get($flaticon_charitics-map, "location");
+}
+.flaticon-down:before {
+    content: map-get($flaticon_charitics-map, "down");
+}
+.flaticon-pause:before {
+    content: map-get($flaticon_charitics-map, "pause");
+}
+.flaticon-menu:before {
+    content: map-get($flaticon_charitics-map, "menu");
+}
+.flaticon-dots:before {
+    content: map-get($flaticon_charitics-map, "dots");
+}
+.flaticon-menu-1:before {
+    content: map-get($flaticon_charitics-map, "menu-1");
+}
+.flaticon-close:before {
+    content: map-get($flaticon_charitics-map, "close");
+}
+.flaticon-close-1:before {
+    content: map-get($flaticon_charitics-map, "close-1");
+}

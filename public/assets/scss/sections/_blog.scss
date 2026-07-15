@@ -1,0 +1,271 @@
+.ul-blogs {
+    position: relative;
+    overflow: hidden;
+    max-width: 1920px;
+    margin: auto;
+
+    &-container {
+        max-width: clamp(1170px, 86.60vw, 1648px);
+        margin-left: auto;
+
+        @include lg {
+            margin: 0 15px;
+        }
+    }
+
+
+    .ul-section-heading {
+        background-color: var(--white);
+        position: relative;
+        z-index: 2;
+        height: 100%;
+        align-items: flex-start;
+    }
+
+    &-slider {
+        --shadow-space: clamp(15px, 1.22vw, 29px);
+        --shadow-space-x: 20px;
+        --shadow-space-y: 40px;
+        padding: var(--shadow-space-y) var(--shadow-space-x);
+        margin: calc(0% - var(--shadow-space-y)) calc(0% - var(--shadow-space-x));
+
+        &-nav {
+            position: static;
+            width: auto;
+            justify-content: flex-start;
+            transform: translate(0, 0);
+            gap: 10px;
+            margin-top: clamp(20px, 1.84vw, 35px);
+
+            @include xs {
+                justify-content: center;
+            }
+
+            button {
+                background-color: var(--white);
+                box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.06);
+                color: var(--ul-black);
+                border: 1px solid rgba(0, 0, 0, 0.2);
+            }
+        }
+    }
+}
+
+.ul-blog {
+    background: var(--white);
+    border-radius: 16px;
+    border: 1px solid #f7f7f7;
+
+    &:hover {
+        border-color: transparent;
+
+        .ul-blog-txt {
+            box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.08);
+        }
+    }
+
+    &-img {
+        position: relative;
+        border-radius: 16px 16px 0 0;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            aspect-ratio: 370/265;
+        }
+    }
+
+    .date {
+        position: absolute;
+        top: clamp(15px, 1.05vw, 20px);
+        left: clamp(15px, 1.05vw, 20px);
+        background-color: var(--ul-primary);
+        border-radius: 6px;
+        display: inline-block;
+        overflow: hidden;
+        text-align: center;
+        color: var(--white);
+        padding: clamp(8px, 0.63vw, 12px) clamp(12px, 0.84vw, 16px);
+
+        .number {
+            display: block;
+            font-weight: 700;
+            font-size: clamp(20px, 1.26vw, 24px);
+            line-height: 0.8;
+            margin-bottom: clamp(3px, 0.32vw, 6px);
+        }
+
+        .txt {
+            line-height: 0.8;
+            display: block;
+            font-weight: 400;
+            font-size: clamp(11px, 0.74vw, 14px);
+        }
+    }
+
+    &-txt {
+        box-shadow: 0px 4px 40px transparent;
+        transition: 0.4s ease;
+        border-radius: 0 0 16px 16px;
+        padding: clamp(15px, 1.58vw, 30px);
+        padding-top: 0;
+    }
+
+    &-infos {
+        display: flex;
+        align-items: center;
+        font-size: clamp(13px, 0.84vw, 16px);
+        font-weight: 400;
+        margin-bottom: clamp(8px, 0.53vw, 10px);
+        color: var(--ul-gray);
+        border-bottom: 1px solid rgba(67, 67, 67, 0.25);
+    }
+
+    &-info {
+        display: flex;
+        align-items: center;
+        gap: clamp(7px, 0.53vw, 10px);
+        line-height: 1;
+        border-right: 1px solid rgba(67, 67, 67, 0.25);
+        width: 50%;
+        flex-grow: 1;
+        padding: clamp(12px, 1.05vw, 20px) 0 clamp(7px, 0.63vw, 12px);
+
+        &:last-child {
+            border-right: none;
+            justify-content: flex-end;
+        }
+
+        i {
+            font-size: clamp(15px, 0.95vw, 18px);
+            color: var(--ul-primary);
+        }
+    }
+
+    &-title {
+        font-weight: 700;
+        font-size: clamp(18px, 1.26vw, 24px);
+        line-height: 1.2;
+        font-family: var(--font-quicksand);
+        border-bottom: 1px solid rgba(67, 67, 67, 0.25);
+        margin-bottom: clamp(16px, 1.26vw, 24px);
+        padding-top: clamp(7px, 0.63vw, 12px);
+        padding-bottom: clamp(11px, 1.10vw, 21px);
+
+        @include xl {
+            margin-bottom: 18px;
+        }
+
+        a {
+            color: var(--ul-black);
+            display: inline-block;
+
+            &:hover {
+                color: var(--ul-primary);
+            }
+        }
+    }
+
+    &-btn {
+        font-size: clamp(13px, 0.84vw, 16px);
+        font-weight: 700;
+        color: var(--ul-primary);
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        gap: 6px;
+
+        .icon {
+            display: inline-flex;
+
+            i {
+                font-size: clamp(18px, 1.16vw, 22px);
+            }
+        }
+
+        &:hover {
+            color: var(--ul-secondary);
+        }
+    }
+}
+
+
+// ----------------------------------- INDEX-2 BLOG -----------------------------------
+.ul-blog-2 {
+    background-color: var(--ul-gray3);
+    border: none;
+
+    .ul-blog {
+        &-img .date {
+            inset: auto;
+            bottom: clamp(14px, 1.26vw, 24px);
+            right: clamp(14px, 1.26vw, 24px);
+        }
+
+        &-txt {
+            box-shadow: none !important;
+            padding-top: clamp(18px, 1.47vw, 28px);
+        }
+
+        &-infos {
+            border: none;
+            margin-bottom: clamp(0px, 0.11vw, 2px);
+            gap: clamp(15px, 1.58vw, 30px);
+        }
+
+        &-info {
+            padding: 0;
+            border: none;
+            width: auto;
+            flex-grow: 0;
+        }
+
+        &-btn {
+            color: var(--ul-black);
+
+            i {
+                color: var(--ul-primary);
+            }
+
+            &:hover {
+                color: var(--ul-primary);
+            }
+        }
+    }
+}
+
+// ----------------------------------- inner page blog -----------------------------------
+.ul-blog-inner {
+    background-color: transparent;
+    border-radius: 0;
+    margin-bottom: clamp(30px, 3.15vw, 60px);
+
+    .ul-blog {
+        &-img {
+            border-radius: 30px;
+            margin-bottom: clamp(15px, 1.58vw, 30px);
+
+            img {
+                aspect-ratio: 890/600;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+
+        &-title {
+            font-size: clamp(22px, 2.63vw, 50px);
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: clamp(5px, 0.53vw, 10px);
+        }
+
+        &-txt {
+            padding: 0;
+        }
+
+        &-excerpt {
+            margin-bottom: clamp(12px, 2.21vw, 42px);
+        }
+    }
+}

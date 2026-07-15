@@ -1,0 +1,295 @@
+.ul-testimonial {
+    background-color: var(--ul-gray3);
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+
+    &-container {
+        max-width: clamp(1652px, 98.37vw, 1872px);
+        margin: auto;
+
+        @include xxl {
+            padding: 0 15px;
+        }
+    }
+
+    .ul-section-heading {
+        max-width: 35%;
+        margin-inline: auto;
+
+        @include md {
+            max-width: 45%;
+        }
+
+        @include sm {
+            max-width: 65%;
+        }
+
+        @include xs {
+            max-width: 100%;
+        }
+    }
+
+
+    &-slider {
+        --shadow-space: 35px;
+        padding: var(--shadow-space);
+        margin: calc(0px - var(--shadow-space));
+
+        &-pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(8px, 0.63vw, 12px);
+            margin-top: clamp(30px, 3.15vw, 60px);
+
+            .swiper-pagination-bullet {
+                width: 12px;
+                height: 12px;
+                aspect-ratio: 1/1;
+                background-color: var(--white);
+                border-radius: 50%;
+                opacity: 1;
+                transition: 0.3s;
+                margin: 0 !important;
+                border-radius: 999px;
+            }
+
+            .swiper-pagination-bullet-active {
+                background-color: var(--ul-primary);
+                padding: 0;
+                width: clamp(25px, 1.58vw, 30px);
+            }
+        }
+    }
+}
+
+.ul-reviews {
+    padding: clamp(40px, 4.20vw, 80px) 15px;
+
+    &-heading-descr {
+        margin-bottom: 0;
+        font-weight: 400;
+        font-size: clamp(15px, 0.95vw, 18px);
+        letter-spacing: -0.03em;
+        color: #4F536C;
+        margin-top: clamp(8px, 0.63vw, 12px);
+    }
+
+}
+
+
+.ul-review {
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.06);
+    padding: clamp(30px, 2.63vw, 50px) clamp(15px, 1.84vw, 35px);
+
+    &-rating {
+        display: flex;
+        align-items: center;
+        gap: clamp(4px, 0.37vw, 7px);
+        font-size: var(--ul-primary);
+        color: #FFA31A;
+        margin-bottom: clamp(10px, 1.05vw, 20px);
+    }
+
+    &-descr {
+        font-weight: 400;
+        font-size: clamp(15px, 0.95vw, 18px);
+        line-height: 167%;
+        color: var(--ul-p);
+        margin-bottom: clamp(16px, 1.63vw, 31px);
+    }
+
+    &-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    &-reviewer {
+        display: flex;
+        align-items: center;
+        gap: clamp(10px, 0.79vw, 15px);
+
+        .reviewer-image img {
+            width: clamp(45px, 3.15vw, 60px);
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .reviewer-name {
+            font-weight: 700;
+            font-size: clamp(17px, 1.05vw, 20px);
+            color: var(--ul-black);
+            margin-bottom: clamp(1px, 0.21vw, 4px);
+            padding-top: 3px;
+        }
+
+        .reviewer-role {
+            display: block;
+            font-size: clamp(13px, 0.84vw, 16px);
+            color: var(--ul-p);
+        }
+    }
+
+    &-icon {
+        font-size: clamp(30px, 2.36vw, 45px);
+        color: var(--ul-primary);
+        display: inline-flex;
+        line-height: 1;
+    }
+}
+
+// -------------------------------------------- INDEX-2 TESTIMONIAL style --------------------------------------------
+.ul-testimonial-2 {
+    &-overview {
+        background-color: #F5F0E2;
+        text-align: center;
+        padding: clamp(25px, 2.36vw, 45px) clamp(18px, 1.89vw, 36px);
+        border-radius: clamp(15px, 1.58vw, 30px);
+
+        .rating {
+            display: block;
+            font-size: clamp(55px, 4.20vw, 80px);
+            font-weight: 700;
+            font-family: var(--font-quicksand);
+            line-height: 0.7;
+            margin-bottom: clamp(15px, 1.58vw, 30px);
+        }
+
+        &-stars {
+            font-size: clamp(20px, 1.31vw, 25px);
+            color: #FFA31A;
+            margin-bottom: clamp(1px, 0.21vw, 4px);
+        }
+
+        &-title {
+            color: var(--ul-p);
+            display: block;
+            margin-bottom: clamp(15px, 1.16vw, 22px);
+        }
+
+        &-descr {
+            color: var(--ul-p);
+            margin-bottom: clamp(20px, 2.10vw, 40px);
+        }
+
+        &-reviewers {
+            img {
+                width: clamp(60px, 3.68vw, 70px);
+                aspect-ratio: 1/1;
+                object-fit: cover;
+                border-radius: 50%;
+                margin-left: calc(0% - clamp(18px, 1.31vw, 25px));
+
+                &:first-child {
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+
+    &-slider {
+        margin-left: clamp(16px, 2.94vw, 56px);
+
+        @include xl {
+            margin-left: 15px;
+        }
+
+        @include md {
+            margin-left: 0;
+        }
+
+        &-nav {
+            display: flex;
+            gap: clamp(14px, 1.26vw, 24px);
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            z-index: 1;
+            background-color: var(--white);
+
+            @include xxs {
+                display: none;
+            }
+
+            button {
+                width: clamp(40px, 2.63vw, 50px);
+                aspect-ratio: 1/1;
+                border: 1px solid var(--ul-black);
+                border-radius: 50%;
+                color: var(--ul-black);
+                transition: 0.3s;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &:hover {
+                    background-color: var(--ul-primary);
+                    border-color: var(--ul-primary);
+                    color: var(--white);
+                }
+            }
+        }
+    }
+}
+
+.ul-review-2 {
+    box-shadow: none;
+    padding: 0;
+
+    .icon {
+        font-size: clamp(57px, 4.31vw, 82px);
+        color: var(--ul-primary);
+        display: flex;
+        margin-bottom: clamp(2px, 0.26vw, 5px);
+
+        i {
+            transform: scaleX(-1) scaleY(-1);
+        }
+    }
+
+    .ul-review {
+        &-descr {
+            // font-size: clamp(18px, 1.68vw, 32px);
+            font-size: clamp(17px, 1.05vw, 20px);
+            font-style: italic;
+            font-weight: 600;
+            line-height: 1.5;
+            color: var(--ul-p);
+            margin-bottom: clamp(22px, 1.94vw, 37px);
+
+            &::before {
+                content: open-quote;
+
+            }
+
+            &::after {
+                content: close-quote;
+            }
+        }
+
+        &-reviewer {
+            gap: clamp(12px, 1.05vw, 20px);
+
+            .reviewer {
+                &-image img {
+                    width: clamp(50px, 3.68vw, 70px);
+                }
+
+                &-name {
+                    font-family: var(--font-quicksand);
+                    font-weight: 700;
+                    font-size: clamp(22px, 1.68vw, 32px);
+                    padding-top: 0;
+                    margin-bottom: clamp(9px, 0.63vw, 12px);
+                }
+
+            }
+        }
+    }
+}

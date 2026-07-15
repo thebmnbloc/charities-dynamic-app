@@ -1,0 +1,61 @@
+.ul-why-join {
+    &-wrapper {
+        background-color: var(--ul-gray3);
+        border-radius: clamp(15px, 1.58vw, 30px);
+        max-width: clamp(1185px, 91.38vw, 1739px);
+        margin: auto;
+
+        position: relative;
+        z-index: 1;
+
+        &::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            inset: 0;
+            background: url(../img/stats-events-bg-shape.svg) no-repeat center bottom/cover;
+            mix-blend-mode: multiply;
+            border-radius: clamp(15px, 1.58vw, 30px);
+            opacity: 8%;
+        }
+    }
+
+    &-img {
+        width: max-content;
+        max-width: 100%;
+        position: relative;
+        z-index: 1;
+
+        @include xxl {
+            margin: auto;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: clamp(2px, 0.26vw, 5px) solid var(--ul-primary);
+            border-radius: clamp(15px, 1.58vw, 30px);
+            bottom: calc(0% - clamp(15px, 1.58vw, 30px));
+            left: calc(0% - clamp(15px, 1.58vw, 30px));
+        }
+
+        img {
+            border-radius: 30px;
+            width: clamp(260px, 34.68vw, 660px);
+            aspect-ratio: 660/632;
+        }
+    }
+
+    &-txt {
+        .ul-section-title {
+            margin-bottom: clamp(13px, 1.21vw, 23px);
+        }
+
+        .ul-section-descr {
+            color: var(--ul-p);
+            margin-bottom: clamp(17px, 1.42vw, 27px);
+        }
+    }
+}

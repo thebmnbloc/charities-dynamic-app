@@ -1,0 +1,55 @@
+.ul-contact {
+    &-info {
+        background-color: var(--ul-gray3);
+        border-radius: 20px;
+        padding: clamp(20px, 2.10vw, 40px) clamp(15px, 1.84vw, 35px);
+
+        .icon {
+            background-color: var(--ul-primary);
+            width: clamp(60px, 4.20vw, 80px);
+            aspect-ratio: 1/1;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: clamp(26px, 2.10vw, 40px);
+            margin-bottom: clamp(25px, 2.89vw, 55px);
+        }
+
+        .title {
+            display: block;
+            font-size: clamp(15px, 0.95vw, 18px);
+            color: var(--ul-gray);
+            margin-bottom: 4px;
+        }
+
+        a,
+        .descr {
+            font-family: var(--font-quicksand);
+            font-weight: 700;
+            font-size: clamp(18px, 1.26vw, 24px);
+        }
+
+        a:hover {
+            color: var(--ul-primary);
+        }
+    }
+
+    &-map {
+        iframe {
+            width: 100%;
+            aspect-ratio: 1920/800;
+            vertical-align: top;
+        }
+    }
+}
+
+.ul-inner-contact-container {
+    max-width: clamp(587px, 48.87vw, 930px);
+    margin: auto;
+
+    @include sm {
+        margin: 0 15px;
+    }
+}

@@ -1,0 +1,106 @@
+.ul-project {
+    border-radius: clamp(15px, 1.58vw, 30px);
+    overflow: hidden;
+    position: relative;
+
+    &--sm {
+        .ul-project {
+            &-img img {
+                aspect-ratio: 450/480;
+
+                @include sm {
+                    aspect-ratio: 930/480;
+                }
+
+                @include xxs {
+                    aspect-ratio: 450/480;
+                }
+            }
+
+            &-txt {
+                bottom: clamp(15px, 1.58vw, 30px);
+                left: clamp(15px, 1.58vw, 30px);
+                margin-right: clamp(15px, 1.58vw, 30px);
+            }
+        }
+    }
+
+    &:hover {
+        .ul-project {
+            &-img img {
+                transform: scale(1.1);
+            }
+
+            &-txt {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    }
+
+    &-img img {
+        aspect-ratio: 930/480;
+        width: 100%;
+        object-fit: cover;
+
+        @include md {
+            aspect-ratio: 450/480;
+            height: 100%;
+        }
+
+        @include sm {
+            aspect-ratio: 930/480;
+        }
+
+        @include xxs {
+            aspect-ratio: 450/480;
+        }
+    }
+
+    &-txt {
+        background-color: var(--ul-primary);
+        color: var(--white);
+        position: absolute;
+        bottom: clamp(15px, 2.10vw, 40px);
+        left: clamp(15px, 2.10vw, 40px);
+        border-radius: clamp(7px, 0.53vw, 10px);
+        padding: clamp(15px, 1.58vw, 30px);
+        display: flex;
+        gap: clamp(15px, 1.58vw, 30px);
+        align-items: center;
+        max-width: 100%;
+        margin-right: clamp(15px, 2.10vw, 40px);
+        transform: translateY(50%);
+        opacity: 0;
+        transition: 0.4s ease;
+    }
+
+    &-title {
+        font-family: var(--font-quicksand);
+        font-weight: 700;
+        font-size: clamp(26px, 1.68vw, 32px);
+
+        a {
+            color: var(--white);
+
+            &:hover {
+                color: var(--ul-black);
+            }
+        }
+    }
+
+    &-descr {
+        margin-bottom: 0;
+    }
+
+    &-btn {
+        flex-shrink: 0;
+        width: clamp(40px, 3.15vw, 60px);
+        aspect-ratio: 1/1;
+        background-color: #D9D9D9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+    }
+}

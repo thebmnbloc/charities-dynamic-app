@@ -1,0 +1,166 @@
+.ul-donations {
+    background: url(../img/donations-bg.png) no-repeat center center/cover;
+    position: relative;
+    z-index: 1;
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        left: auto;
+        border-radius: 999px 0 0 999px;
+        background: url(../img/donations-bg-img.jpg) no-repeat center center/cover;
+        width: clamp(0px, 46.56vw, 886px);
+
+        @include md {
+            top: 20%;
+        }
+
+        @include xxs {
+            top: 35%;
+        }
+    }
+
+    &::after {
+        background: var(--ul-black);
+        opacity: 85%;
+    }
+
+    &-heading {
+        .left {
+            max-width: 660px;
+            text-align: left;
+        }
+
+        @include md {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .ul-banner-stat {
+            .txt {
+                @include sm {
+                    color: var(--ul-black) !important;
+                }
+            }
+        }
+    }
+
+    &-slider-nav {
+        position: static;
+        width: auto;
+        transform: translate(0);
+        gap: clamp(10px, 0.79vw, 15px);
+
+        button {
+            background-color: var(--white);
+            color: var(--ul-black);
+        }
+    }
+}
+
+.ul-donation {
+    background-color: var(--white);
+    border-radius: 20px;
+    padding: clamp(15px, 1.26vw, 24px);
+    padding-bottom: 0;
+    border: 3px solid transparent;
+    transition: 0.4s ease;
+
+    &:hover {
+        border-color: var(--ul-primary);
+
+        .ul-donation-btn {
+            background-color: var(--ul-primary);
+
+            &::before {
+                background-color: var(--ul-primary);
+            }
+        }
+    }
+
+    &-img {
+        position: relative;
+        margin-bottom: clamp(20px, 1.84vw, 35px);
+
+        img {
+            border-radius: 16px;
+            aspect-ratio: 282/188;
+        }
+
+        .tag {
+            position: absolute;
+            top: clamp(10px, 0.79vw, 15px);
+            left: clamp(10px, 0.79vw, 15px);
+            background-color: var(--ul-primary);
+            color: var(--white);
+            padding: 0px clamp(7px, 0.53vw, 10px) 1px;
+            border-radius: 99px;
+            font-size: clamp(12px, 0.74vw, 14px);
+            font-weight: 500;
+        }
+    }
+
+    &-progress {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        margin-bottom: clamp(5px, 0.47vw, 9px);
+        padding-bottom: clamp(8px, 0.79vw, 15px);
+
+        &-labels {
+            padding-top: clamp(3px, 0.32vw, 6px);
+            font-size: clamp(11px, 0.63vw, 12px);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+    }
+
+    &-title {
+        font-weight: 700;
+        font-family: var(--font-quicksand);
+        font-size: clamp(17px, 1.05vw, 20px);
+        margin: clamp(0px, 0.21vw, 4px);
+    }
+
+    &-descr {
+        color: var(--ul-p);
+    }
+
+    &-btn {
+        background-color: var(--ul-black);
+        border-radius: clamp(12px, 1.05vw, 20px) clamp(12px, 1.05vw, 20px) 0 0;
+        color: var(--white);
+        font-weight: 700;
+        font-size: clamp(15px, 0.95vw, 18px);
+        display: inline-flex;
+        gap: clamp(9px, 0.63vw, 12px);
+        align-items: center;
+        padding: clamp(5px, 0.47vw, 9px) clamp(14px, 1.05vw, 20px);
+        position: relative;
+        z-index: 1;
+
+        &:hover {
+            // color: var(--ul-black);
+            color: var(--white);
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            bottom: -3px;
+            border-radius: clamp(12px, 1.05vw, 20px) clamp(12px, 1.05vw, 20px) 0 0;
+            background-color: var(--ul-black);
+            transition: 0.4s ease;
+        }
+    }
+
+    &--inner {
+        background-color: var(--ul-gray3);
+    }
+}

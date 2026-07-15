@@ -1,0 +1,195 @@
+.ul-donate-form-section {
+    position: relative;
+    z-index: 1;
+    background-color: var(--ul-primary);
+    border-radius: 20px;
+    padding: clamp(30px, 3.15vw, 60px) 0;
+    box-shadow: 0px 4px 70px rgba(235, 83, 16, 0.2);
+    overflow: hidden;
+
+    @include md {
+        padding: clamp(15px, 3.15vw, 60px) 15px;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        border-radius: 20px;
+        mix-blend-mode: multiply;
+        inset: 0;
+        filter: drop-shadow(0px 4px 70px rgba(235, 83, 16, 0.2));
+        background: url(../img/donate-form-wrapper-bg.png) no-repeat center center/cover;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    .ul-section-sub-title {
+        &::before {
+            background-color: var(--white);
+        }
+    }
+
+    .ul-section-title {
+        margin-bottom: clamp(27px, 3.00vw, 57px);
+        font-size: clamp(25px, 2.31vw, 44px);
+    }
+
+    &-txt {
+        padding-right: clamp(15px, 3.15vw, 60px);
+
+        .ul-progress {
+            border-bottom: none;
+
+            &-container {
+                border-color: var(--white);
+            }
+
+            &-label {
+                color: var(--white);
+            }
+
+
+            &bar {
+                background-color: var(--white);
+
+                &::before {
+                    border: 4px solid var(--white);
+                    background-color: var(--ul-primary);
+                }
+            }
+        }
+
+        .ul-donation-progress {
+            border-bottom: none;
+
+            &-labels {
+                color: var(--white);
+            }
+        }
+    }
+}
+
+.ul-donate-form-wrapper {
+    background-color: var(--ul-black);
+    color: var(--white);
+    border-radius: 0 20px 20px 0;
+    position: relative;
+    z-index: 1;
+    padding: clamp(20px, 3.15vw, 60px);
+    box-shadow: 0px 4px 70px rgba(235, 83, 16, 0.2);
+
+    @include md {
+        border-radius: 20px;
+        margin-bottom: 15px;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url(../img/donate-form-bg.jpg) no-repeat center center/cover;
+        opacity: 40%;
+        z-index: -1;
+        border-radius: 0 20px 20px 0;
+
+        @include md {
+            border-radius: 20px;
+        }
+    }
+}
+
+.ul-donate-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(15px, 1.58vw, 30px) clamp(7px, 0.53vw, 10px);
+    position: relative;
+    z-index: 1;
+
+    &-title {
+        font-size: clamp(24px, 1.58vw, 30px);
+        font-weight: 700;
+        font-family: var(--font-quicksand);
+        margin-bottom: clamp(20px, 1.84vw, 35px);
+    }
+
+    label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: clamp(35px, 2.10vw, 40px);
+        padding: 0 clamp(15px, 1.58vw, 30px);
+        border-radius: 999px;
+        font-weight: 700;
+        background-color: var(--white);
+        color: var(--ul-black);
+    }
+
+    input[type="radio"] {
+        &:checked {
+            +label {
+                background-color: var(--ul-primary);
+                color: var(--white);
+
+                .ul-donate-form-custom-input {
+                    pointer-events: all;
+                    color: var(--white);
+
+                    &::placeholder {
+                        color: var(--white);
+                    }
+                }
+            }
+        }
+    }
+
+    .ul-donate-form-custom-input {
+        pointer-events: none;
+        width: 100%;
+    }
+
+    .custom-amount-wrapper {
+        position: relative;
+
+        label {
+            padding: 0;
+            height: auto;
+            position: absolute;
+            top: 0;
+            pointer-events: none;
+        }
+
+        input {
+            padding: 0 clamp(15px, 1.58vw, 30px);
+            border-radius: 999px;
+            font-weight: 700;
+            border: none;
+            height: clamp(45px, 2.94vw, 56px);
+            // position: absolute;
+            // transform: translateY(-100%);
+        }
+
+        input[type="radio"] {
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            width: clamp(212px, 12.09vw, 230px);
+            // pointer-events: none;
+
+            &:checked {}
+        }
+    }
+
+    // label[for="donate-amount-custom"] {
+    //     pointer-events: none;
+    //     background-color: transparent !important;
+    // }
+
+    &-vector {
+        position: absolute;
+        right: calc(0% - clamp(64px, 6.52vw, 124px));
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: -2;
+        max-width: clamp(93px, 10.14vw, 193px);
+    }
+}

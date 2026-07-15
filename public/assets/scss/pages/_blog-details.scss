@@ -1,0 +1,241 @@
+.ul-blog-details {
+
+    //     &-title,
+    //     h3 {
+    //         font-weight: 700;
+    //         font-size: clamp(21px, 1.26vw, 24px);
+    //         margin-bottom: clamp(10px, 0.84vw, 16px);
+    //         line-height: 1.5;
+    //     }
+
+    //     .ul-blog-infos {
+    //         border-bottom: 1px solid #D4DCED;
+    //         padding-bottom: clamp(12px, 1.05vw, 20px);
+    //     }
+
+    //     &-descr,
+    //     p {
+    //         color: var(--ul-gray);
+    //         font-size: clamp(13px, 0.84vw, 16px);
+    //     }
+
+    //     &-inner-img {
+    //         display: flex;
+    //         gap: clamp(15px, 1.58vw, 30px);
+    //         margin: clamp(15px, 1.58vw, 30px) 0;
+
+    //         @include xxs {
+    //             flex-direction: column;
+    //         }
+
+    //         img {
+    //             max-width: calc(50% - clamp(15px, 1.58vw, 30px) / 2);
+    //             aspect-ratio: 370/269;
+    //             object-fit: cover;
+    //             width: 100%;
+    //             border-radius: 15px;
+
+    //             @include xxs {
+    //                 max-width: 100%;
+    //             }
+    //         }
+    //     }
+
+    //     blockquote {
+    //         background-color: #FFEDF0;
+    //         padding: clamp(15px, 1.58vw, 30px) clamp(20px, 2.1vw, 40px);
+    //         padding-right: clamp(80px, 6.83vw, 130px);
+    //         border-radius: 10px;
+    //         border-left: 4px solid var(--ul-primary);
+    //         font-size: clamp(13px, 0.84vw, 16px);
+    //         font-weight: 600;
+    //         font-style: italic;
+    //         position: relative;
+    //         color: var(--ul-black);
+
+    //         &::before {
+    //             position: absolute;
+    //             right: clamp(20px, 2.10vw, 40px);
+    //             bottom: 28px;
+    //             color: var(--ul-primary);
+    //             font-size: clamp(30px, 1.89vw, 36px);
+
+    //             content: "\f148";
+    //             font-family: flaticon_restics !important;
+    //             font-style: normal;
+    //             font-weight: normal !important;
+    //             font-variant: normal;
+    //             text-transform: none;
+    //             line-height: 1;
+    //             -webkit-font-smoothing: antialiased;
+    //             -moz-osx-font-smoothing: grayscale;
+    //         }
+    //     }
+
+    &-txt {
+        blockquote {
+            background-color: var(--ul-primary);
+            color: var(--white);
+
+            &::before {
+                background-image: url(../img/quote-icon-white.svg);
+            }
+        }
+    }
+
+    &-actions {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 10px;
+
+        .actions-title {
+            font-size: clamp(13px, 0.84vw, 16px);
+            font-weight: 600;
+            margin-bottom: 0;
+            text-transform: uppercase;
+        }
+
+        .tags-wrapper,
+        .shares-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tags-wrapper {
+
+            a,
+            button {
+                border-left: 1px solid var(--ul-gray);
+                line-height: 0.7;
+                padding-left: clamp(9px, 0.63vw, 12px);
+                margin-left: clamp(9px, 0.63vw, 12px);
+
+                &:first-child {
+                    border-left: none;
+                    padding-left: 0;
+                    margin-left: 0;
+                }
+
+                &:hover {
+                    border-color: var(--ul-primary);
+                }
+            }
+        }
+
+        .share-options {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: clamp(7px, 0.53vw, 10px);
+
+            a {
+                color: var(--black);
+                display: flex;
+                width: clamp(25px, 1.47vw, 28px);
+                aspect-ratio: 1/1;
+                border-radius: 50%;
+                background-color: var(--ul-black);
+                color: var(--white);
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 12px;
+
+                &:hover {
+                    background-color: var(--ul-primary);
+                }
+            }
+        }
+    }
+
+    &-reviews {
+        margin-top: clamp(22px, 1.84vw, 35px);
+    }
+
+    &-review {
+        .main-comment {
+            display: flex;
+            align-items: flex-start;
+            gap: clamp(12px, 1.26vw, 24px);
+        }
+
+        @include xxs {
+            flex-direction: column;
+        }
+
+        &-reviewer-img {
+            flex-shrink: 0;
+
+            img {
+                width: clamp(70px, 4.73vw, 90px);
+                aspect-ratio: 1/1;
+                border-radius: 10px;
+                object-fit: cover;
+            }
+        }
+
+        &-txt {
+            flex-grow: 1;
+
+            .reviewer-name {
+                font-weight: 700;
+                font-size: clamp(18px, 1.26vw, 24px);
+                line-height: 110%;
+                color: var(--ul-black);
+                font-family: var(--font-quicksand);
+            }
+
+            .review-date {
+                font-size: clamp(13px, 0.84vw, 16px);
+                font-weight: 400;
+                margin-bottom: 0;
+                color: var(--ul-gray);
+            }
+        }
+
+        p {
+            // font-size: clamp(15px, 0.95vw, 18px);
+            font-weight: 400;
+            margin-bottom: clamp(7px, 0.53vw, 10px);
+            color: var(--ul-gray);
+        }
+
+        &-reply-btn {
+            font-weight: 700;
+            font-size: clamp(13px, 0.84vw, 16px);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: clamp(8px, 0.68vw, 13px);
+
+            i {
+                color: var(--ul-primary);
+            }
+
+            &:hover {
+                color: var(--ul-primary);
+            }
+        }
+
+        &-replies {
+            margin-left: clamp(20px, 6.04vw, 115px);
+        }
+
+        &-reply {
+            margin-top: clamp(15px, 1.84vw, 35px);
+        }
+    }
+
+    &-review-form-wrapper {
+        margin-top: clamp(35px, 3.68vw, 70px);
+
+        .ul-btn {
+            &:hover {
+                color: var(--ul-black);
+            }
+        }
+    }
+}

@@ -1,0 +1,25 @@
+.ul-feature {
+    background-color: var(--ul-gray3);
+    border-radius: 10px;
+    padding: clamp(15px, 1.58vw, 30px);
+
+    &-icon {
+        margin-bottom: clamp(0px, 0.16vw, 3px);
+
+        svg {
+            width: clamp(30px, 1.89vw, 36px);
+
+            path {
+                fill: var(--ul-primary);
+            }
+        }
+    }
+
+    &-title {
+        font-size: clamp(20px, 1.26vw, 24px);
+        font-weight: 700;
+        color: var(--ul-black);
+        margin-bottom: 0;
+        font-family: var(--font-quicksand);
+    }
+}

@@ -1,0 +1,96 @@
+.ul-sidebar {
+    justify-content: flex-start;
+    gap: 20px;
+    border-left: 2px solid var(--ul-primary);
+
+    &-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        padding-bottom: clamp(20px, 1.58vw, 30px);
+    }
+
+    &-closer {
+        display: inline-flex;
+        padding: 0;
+
+        &:hover {
+            color: var(--ul-primary);
+        }
+
+        i {
+            display: inline-flex;
+        }
+    }
+
+    &-about {
+        .title {
+            font-weight: 600;
+            font-size: 24px;
+            margin-bottom: clamp(7px, 0.53vw, 10px);
+            display: inline-block;
+        }
+
+        .descr {
+            font-size: clamp(13px, 0.84vw, 16px);
+        }
+    }
+
+    &-slider {
+        &-wrapper {
+            display: flex;
+            gap: 20px;
+
+            .slider-wrapper {
+                max-width: calc(85% - 20px);
+            }
+        }
+
+        &-nav {
+            position: static;
+            transform: translate(0);
+            gap: 10px;
+            width: 15%;
+        }
+    }
+
+    &-footer {
+        margin-top: auto;
+
+        &-title {
+            color: var(--black);
+            font-weight: 600;
+            font-size: clamp(20px, 1.26vw, 24px);
+            margin-bottom: clamp(7px, 0.53vw, 10px);
+            display: inline-block;
+        }
+
+        &-social {
+            display: flex;
+            flex-wrap: wrap;
+            gap: clamp(7px, 0.53vw, 10px);
+
+            a {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                aspect-ratio: 1/1;
+                border-radius: 50%;
+                border: 1px solid rgba(0, 0, 0, 0.4);
+                color: var(--black);
+                height: clamp(37px, 2.1vw, 40px);
+
+                &:hover {
+                    color: var(--white);
+                    background-color: var(--ul-primary);
+                    border-color: var(--ul-primary);
+                }
+
+                i {
+                    display: inline-flex;
+                }
+            }
+        }
+    }
+}

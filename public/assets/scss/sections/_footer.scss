@@ -1,0 +1,399 @@
+.ul-footer {
+    position: relative;
+    z-index: 1;
+
+    &-container {
+        max-width: clamp(1010px, 61.59vw, 1172px);
+        margin: auto;
+
+        @include lg {
+            padding: 0 15px;
+        }
+    }
+
+    &-top {
+        background: linear-gradient(0deg, var(--ul-black) 50%, rgba(0, 0, 0, 0) 0);
+
+        &-contact {
+            &-infos {
+                background-color: var(--ul-primary);
+                padding: clamp(20px, 1.84vw, 35px) clamp(25px, 2.63vw, 50px);
+                border-radius: 20px;
+                overflow: hidden;
+                position: relative;
+                z-index: 1;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 20px;
+
+                &,
+                a {
+                    color: var(--white);
+                }
+
+                a:hover {
+                    color: var(--ul-black);
+                }
+
+                @include md {
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+
+                @include sm {
+                    justify-content: flex-start;
+                }
+            }
+
+            &-info {
+                display: flex;
+                align-items: center;
+                gap: clamp(10px, 0.79vw, 15px);
+
+                &-icon {
+                    border: 1px solid rgba(255, 255, 255, 0.15);
+                    border-radius: 50%;
+                    width: clamp(48px, 3.31vw, 63px);
+                    aspect-ratio: 1/1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: var(--ul-primary);
+                }
+
+                &-icon-inner {
+                    width: clamp(35px, 2.10vw, 40px);
+                    aspect-ratio: 1/1;
+                    background-color: var(--white);
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                &-txt {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                &-label {
+                    font-size: clamp(12px, 0.74vw, 14px);
+                    font-weight: 500;
+                    margin-bottom: clamp(3px, 0.32vw, 6px);
+                }
+
+                &-address {
+                    font-size: clamp(17px, 1.05vw, 20px);
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+
+    &-middle {
+        padding: clamp(50px, 4.20vw, 80px) 0 clamp(50px, 5.25vw, 100px);
+        position: relative;
+        background-color: var(--ul-black);
+
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: var(--ul-black);
+            z-index: -1;
+            top: -2px;
+        }
+
+
+
+        &-wrapper {
+            display: flex;
+            justify-content: space-between;
+            gap: 35px;
+
+            @include lg {
+                flex-wrap: wrap;
+            }
+        }
+    }
+
+    &-about {
+        max-width: clamp(267px, 14.19vw, 270px);
+
+        >* {
+            margin-bottom: clamp(20px, 1.94vw, 37px);
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        .logo {
+            max-width: clamp(130px, 9.46vw, 180px);
+        }
+
+        &-txt {
+            font-size: clamp(13px, 0.84vw, 16px);
+            color: var(--ul-gray2);
+        }
+    }
+
+    &-socials {
+        display: flex;
+        align-items: center;
+        gap: clamp(6px, 0.47vw, 9px);
+        font-size: clamp(15px, 0.95vw, 18px);
+
+        a {
+            color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            width: clamp(33px, 1.89vw, 36px);
+            aspect-ratio: 1/1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(12px, 0.79vw, 15px);
+
+            &:hover {
+                color: var(--white);
+                background-color: var(--ul-primary);
+                border-color: var(--ul-primary);
+            }
+        }
+    }
+
+    &-widget {
+        min-width: clamp(110px, 10.51vw, 200px);
+
+        @include lg {
+            max-width: 290px;
+            flex-grow: 1;
+        }
+
+        &-title {
+            font-weight: 700;
+            font-size: clamp(20px, 1.26vw, 24px);
+            color: var(--white);
+            margin-bottom: clamp(13px, 1.37vw, 26px);
+            padding-bottom: clamp(8px, 0.68vw, 13px);
+            position: relative;
+
+            &::before,
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                height: 2px;
+                width: 18px;
+                background-color: var(--ul-primary);
+            }
+
+            &::after {
+                left: 24px;
+                width: 63px;
+            }
+        }
+
+        &-links {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: clamp(15px, 0.95vw, 18px);
+
+            >* {
+                display: inline-flex;
+                align-items: center;
+                color: var(--ul-gray2);
+                font-size: clamp(13px, 0.84vw, 16px);
+                position: relative;
+
+                &::before {
+                    content: "\f104";
+                    font-family: flaticon_charitics !important;
+                    font-style: normal;
+                    font-weight: normal !important;
+                    font-variant: normal;
+                    text-transform: none;
+                    line-height: 1;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                    padding-right: 10px;
+                }
+
+                &:hover {
+                    color: var(--ul-primary);
+                }
+            }
+        }
+    }
+
+    &-post {
+        display: flex;
+        gap: clamp(13px, 0.84vw, 16px);
+        margin-bottom: 0;
+        border-bottom: none;
+        padding-bottom: 0;
+        padding-top: clamp(12px, 1.26vw, 24px);
+
+        .img {
+            flex-shrink: 0;
+            max-width: clamp(70px, 5.26vw, 80px);
+            border-radius: 8px;
+            overflow: hidden;
+
+            img {
+                aspect-ratio: 1/1;
+                width: 100%;
+            }
+        }
+
+        .title a {
+            color: var(--white);
+            font-family: var(--font-quicksand);
+            font-size: clamp(13px, 0.84vw, 16px);
+            font-weight: 600;
+
+            &:hover {
+                color: var(--ul-primary);
+            }
+        }
+
+        .date {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: clamp(12px, 0.74vw, 14px);
+            display: flex;
+            align-items: center;
+            gap: clamp(6px, 0.47vw, 9px);
+            margin-bottom: clamp(7px, 0.53vw, 10px);
+
+            .icon {
+                color: var(--white);
+                font-size: clamp(13px, 0.84vw, 16px);
+            }
+        }
+    }
+
+    &-contact-links {
+        a {
+            color: var(--white);
+            gap: clamp(5px, 0.42vw, 8px);
+
+            &:hover {
+                color: var(--ul-primary);
+            }
+
+            &::before {
+                content: none;
+            }
+        }
+    }
+
+    .ul-nwsltr-form {
+        margin-top: clamp(15px, 1.58vw, 30px);
+
+        .top {
+            background-color: var(--white);
+            padding: clamp(2px, 0.26vw, 5px);
+            border-radius: 8px;
+            height: clamp(45px, 2.94vw, 56px);
+            display: flex;
+
+            input {
+                border: none;
+                padding: 0 clamp(7px, 0.53vw, 10px);
+                font-size: clamp(13px, 0.84vw, 16px);
+                width: 100%;
+            }
+
+            button {
+                background-color: var(--ul-c5);
+                color: var(--white);
+                aspect-ratio: 1/1;
+                flex-shrink: 0;
+                border-radius: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &:hover {
+                    background-color: var(--ul-primary);
+                }
+            }
+        }
+
+        .agreement {
+            font-size: clamp(13px, 0.84vw, 16px);
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: clamp(12px, 1.26vw, 24px);
+
+            a {
+                color: var(--white);
+                text-decoration: underline;
+
+                &:hover {
+                    color: var(--ul-primary);
+                }
+            }
+        }
+    }
+
+    &-bottom {
+        padding: clamp(14px, 1.16vw, 22px) 0;
+        background-color: var(--ul-primary);
+
+        &-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .copyright-txt {
+            margin-bottom: 0;
+            font-size: clamp(13px, 0.84vw, 16px);
+            color: rgba(255, 255, 255, 0.9);
+
+            a {
+                color: var(--white);
+
+                &:hover {
+                    color: var(--ul-black);
+                }
+            }
+        }
+
+        a {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: clamp(13px, 0.84vw, 16px);
+
+            &:hover {
+                color: var(--ul-black);
+            }
+        }
+
+        &-nav {
+            display: flex;
+            gap: clamp(15px, 1.58vw, 30px);
+        }
+    }
+
+    &-recent-posts {
+        max-width: clamp(240px, 15.76vw, 300px);
+    }
+
+    &-vectors {
+        >* {
+            position: absolute;
+            z-index: -1;
+        }
+    }
+
+    &-vector-1 {
+        bottom: clamp(18px, 2.52vw, 48px);
+        left: 0;
+    }
+}

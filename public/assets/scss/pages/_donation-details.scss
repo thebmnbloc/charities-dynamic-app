@@ -1,0 +1,269 @@
+.ul-donation-details {
+    margin-left: clamp(20px, 2.63vw, 50px);
+
+    @include md {
+        margin-left: 0;
+    }
+
+    &-img {
+        margin-bottom: clamp(22px, 2.47vw, 47px);
+
+        img {
+            border-radius: 30px;
+            width: 100%;
+            aspect-ratio: 890/600;
+        }
+    }
+
+    &-raised {
+        font-weight: 700;
+        font-size: clamp(25px, 2.63vw, 50px);
+        font-family: var(--font-quicksand);
+        color: var(--ul-black);
+        margin-bottom: clamp(18px, 1.47vw, 28px);
+
+        .target {
+            color: var(--ul-gray);
+            font-weight: 500;
+            font-size: clamp(15px, 0.95vw, 18px);
+        }
+    }
+
+    .ul-donation-progress {
+        border-bottom: none;
+        padding-bottom: 5px;
+        margin-bottom: clamp(20px, 2.10vw, 40px);
+    }
+
+    &-notice {
+        background-color: var(--ul-gray3);
+        padding: clamp(15px, 1.26vw, 24px);
+        border-radius: 999px;
+        display: flex;
+        align-items: center;
+        gap: clamp(13px, 0.84vw, 16px);
+
+        p {
+            margin-bottom: 0;
+            color: var(--ul-p);
+
+            strong {
+                color: var(--ul-black);
+            }
+        }
+    }
+
+    &-donate-form-wrapper {
+        padding: clamp(37px, 2.10vw, 40px) 0 clamp(52px, 2.89vw, 55px);
+
+        .selected-amount {
+            background-color: var(--ul-gray3);
+            border-radius: 999px;
+            height: 50px;
+            padding: 5px;
+            padding-right: clamp(10px, 0.63vw, 12px);
+            width: max-content;
+            max-width: 100%;
+            display: flex;
+            align-items: center;
+            gap: clamp(8px, 0.63vw, 12px);
+            margin-bottom: clamp(12px, 1.26vw, 24px);
+            font-weight: 700;
+            display: none;
+
+            .currency {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: clamp(35px, 2.10vw, 40px);
+                aspect-ratio: 1/1;
+                background-color: var(--ul-primary);
+                color: var(--white);
+                border-radius: 50%;
+            }
+        }
+    }
+
+    .ul-donate-form {
+
+        .custom-amount-wrapper input,
+        label {
+            background-color: var(--ul-gray3);
+            height: clamp(30px, 1.73vw, 33px);
+            font-weight: 700;
+            font-size: 12px;
+            padding-top: 1px;
+        }
+
+        .custom-amount-wrapper input {
+            background-color: transparent;
+
+            &::placeholder {
+                color: var(--ul-black);
+            }
+        }
+    }
+
+    &-payment-methods {
+        margin-bottom: clamp(25px, 2.89vw, 55px);
+
+        &-title {
+            font-family: var(--font-quicksand);
+            font-weight: 700;
+            font-size: clamp(16px, 1.05vw, 20px);
+            color: var(--ul-black);
+            margin-bottom: clamp(5px, 0.42vw, 8px);
+            letter-spacing: -0.04em;
+            border-bottom: 1px solid rgba(30, 37, 47, 0.3);
+            padding-bottom: clamp(15px, 1.31vw, 25px);
+            margin-bottom: clamp(14px, 1.05vw, 20px);
+        }
+
+        &-form {
+            display: flex;
+            gap: clamp(14px, 1.26vw, 24px);
+            flex-wrap: wrap;
+
+            label {
+                font-weight: 800;
+            }
+        }
+    }
+
+    &-personal-info {
+        &-title {
+            font-family: var(--font-quicksand);
+            font-weight: 700;
+            color: var(--ul-black);
+            font-size: clamp(22px, 1.68vw, 32px);
+            margin-bottom: 5px;
+        }
+
+        &-sub-title {
+            margin-bottom: clamp(12px, 1.16vw, 22px);
+        }
+
+        &-form {
+            input {
+                height: clamp(46px, 3.36vw, 64px);
+                width: 100%;
+                border: 1px solid var(--ul-gray3);
+                background-color: var(--ul-gray3);
+                border-radius: 8px;
+                padding: clamp(14px, 1.05vw, 20px);
+            }
+        }
+    }
+
+    &-form-bottom {
+        margin-top: clamp(25px, 2.63vw, 50px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+
+        .donation-total {
+            font-family: var(--font-quicksand);
+            font-weight: 700;
+            font-size: clamp(15px, 1.05vw, 20px);
+
+            .number {
+                color: var(--ul-primary);
+            }
+        }
+    }
+
+
+    &-summary {
+        margin-top: clamp(30px, 3.68vw, 70px);
+
+        &-title {
+            font-family: var(--font-quicksand);
+            font-weight: 700;
+            font-size: clamp(25px, 1.68vw, 32px);
+            margin-bottom: clamp(10px, 1.05vw, 20px);
+        }
+
+        &-txt {
+            p {
+                color: var(--ul-p);
+                font-size: clamp(13px, 0.84vw, 16px);
+            }
+
+            ul {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: clamp(10px, 1.05vw, 20px) 10px;
+                margin: clamp(18px, 1.84vw, 35px) 0;
+
+                @include sm {
+                    grid-template-columns: repeat(1, 1fr);
+                }
+
+                li {
+                    font-weight: 500;
+                    font-size: clamp(15px, 0.95vw, 18px);
+                    display: flex;
+                    align-items: baseline;
+                    gap: clamp(7px, 0.53vw, 10px);
+                    margin-bottom: 0;
+
+                    &::before {
+                        content: "\f139";
+                        font-family: flaticon_charitics !important;
+                        font-style: normal;
+                        font-weight: normal !important;
+                        font-variant: normal;
+                        text-transform: none;
+                        line-height: 1;
+                        -webkit-font-smoothing: antialiased;
+                        -moz-osx-font-smoothing: grayscale;
+                        display: block;
+                    }
+                }
+            }
+
+            blockquote {
+                background-color: var(--ul-gray3);
+                margin: clamp(18px, 1.84vw, 35px) 0;
+                font-size: clamp(13px, 0.84vw, 16px);
+                padding: clamp(18px, 1.84vw, 35px);
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                gap: clamp(15px, 1.58vw, 30px);
+
+                &::before {
+                    content: "";
+                    display: inline-block;
+                    background: url(../img/quote-icon.svg) no-repeat center center;
+                    background-size: 100% 100%;
+                    width: clamp(45px, 2.63vw, 50px);
+                    aspect-ratio: 50/40;
+                    flex-shrink: 0;
+                }
+            }
+        }
+
+        &-imgs {
+            display: flex;
+            gap: clamp(15px, 1.58vw, 30px);
+            margin: clamp(20px, 2.10vw, 40px) 0;
+            max-width: 100%;
+
+            >* {
+                max-width: calc((100% - clamp(15px, 1.58vw, 30px)) / 2);
+            }
+
+            img {
+                width: 100%;
+                aspect-ratio: 430/350;
+                border-radius: 20px;
+            }
+        }
+    }
+}
+
+.ul-donation-progress-2 {
+    padding-top: 20px;
+}

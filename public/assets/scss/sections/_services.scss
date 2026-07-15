@@ -1,0 +1,95 @@
+.ul-services {
+    background: url(../img/service-bg.png) #F5F0E2 no-repeat center center/cover;
+
+    &-slider-nav {
+        transform: none;
+        max-width: 50%;
+        justify-content: flex-end;
+        gap: 15px;
+
+        @include sm {
+            max-width: max-content;
+        }
+
+        @include xs {
+            justify-content: center;
+        }
+
+        button {
+            background-color: var(--white);
+            color: var(--ul-black);
+            box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.06);
+        }
+    }
+}
+
+.ul-service {
+    background-color: var(--white);
+    padding: clamp(15px, 1.58vw, 30px);
+    border-radius: clamp(7px, 0.53vw, 10px);
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+
+    &:hover {
+        &::before {
+            background-color: var(--ul-primary);
+        }
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        top: calc(0% - clamp(50px, 3.68vw, 70px));
+        left: calc(0% - clamp(47px, 3.52vw, 67px));
+        width: clamp(202px, 13.77vw, 262px);
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        background-color: #D9D9D9;
+        transition: 0.4s ease;
+    }
+
+    &-img {
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: clamp(16px, 1.26vw, 24px);
+
+        img {
+            aspect-ratio: 390/253;
+        }
+    }
+
+    &-title {
+        font-size: clamp(18px, 1.26vw, 24px);
+        font-weight: 700;
+        letter-spacing: -1px;
+        font-family: var(--font-quicksand);
+        margin-bottom: clamp(8px, 0.84vw, 16px);
+    }
+
+    &-descr {
+        color: var(--ul-p);
+        margin-bottom: clamp(10px, 1.05vw, 20px);
+    }
+
+    &-btn {
+        display: inline-flex;
+        align-items: center;
+        font-weight: 700;
+        color: var(--ul-primary);
+        gap: clamp(10px, 0.79vw, 15px);
+
+        i {
+            font-size: clamp(11px, 0.74vw, 14px);
+        }
+
+        &:hover {
+            color: var(--ul-black);
+        }
+    }
+
+    &--inner {
+        background-color: var(--ul-gray3);
+    }
+}

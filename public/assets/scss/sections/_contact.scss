@@ -1,0 +1,87 @@
+.ul-contact {
+    background-color: var(--ul-gray3);
+
+
+    &-img {
+        display: flex;
+        justify-content: flex-end;
+
+        img {
+            max-width: clamp(575px, 44.93vw, 855px);
+
+            @include lg {
+                max-width: clamp(535px, 44.93vw, 855px);
+            }
+
+            @include md {
+                max-width: 100%;
+                aspect-ratio: 2/1;
+                object-fit: cover;
+            }
+        }
+    }
+
+    &-form-wrapper {
+        padding: clamp(30px, 6.31vw, 120px);
+        background-color: var(--ul-primary);
+        height: 100%;
+
+        .ul-section-sub-title,
+        .ul-section-title {
+            color: var(--white);
+
+            &::before {
+                background-color: var(--white);
+            }
+        }
+
+        .ul-section-title {
+            margin-bottom: clamp(18px, 1.47vw, 28px);
+        }
+    }
+
+    &-form {
+
+        input,
+        textarea {
+            width: 100%;
+            background-color: var(--white);
+            border-radius: 6px;
+            height: clamp(50px, 3.15vw, 60px);
+            border: 1px solid var(--white);
+            padding: 0 clamp(10px, 0.79vw, 15px);
+
+
+            &:focus,
+            &:focus-visible,
+            &:focus-within {
+                outline: none;
+            }
+        }
+
+        textarea {
+            padding: clamp(10px, 0.79vw, 15px);
+            height: clamp(148px, 9.35vw, 178px);
+        }
+
+        .ul-btn {
+            background-color: var(--ul-black);
+            border-color: var(--ul-black);
+
+            i {
+                background-color: var(--white);
+                color: var(--ul-black);
+            }
+
+            &:hover {
+                background-color: transparent;
+                color: var(--ul-black);
+
+                i {
+                    color: var(--white);
+                    background-color: var(--ul-black);
+                }
+            }
+        }
+    }
+}

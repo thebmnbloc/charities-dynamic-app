@@ -1,0 +1,34 @@
+.ul-404 {
+    &-container {
+        max-width: 750px;
+        margin: auto;
+    }
+
+    &-img {
+        margin-bottom: clamp(10px, 0.79vw, 15px);
+    }
+
+    p {
+        margin-top: clamp(8px, 0.63vw, 12px);
+        font-size: clamp(13px, 0.84vw, 16px);
+        margin-bottom: clamp(16px, 1.37vw, 26px);
+    }
+
+    .ul-btn {
+        background-color: var(--ul-black);
+        border-color: var(--ul-black);
+
+        i {
+            color: var(--ul-black);
+        }
+
+        &:hover {
+            background-color: transparent;
+            color: var(--ul-black);
+
+            i {
+                color: var(--white);
+            }
+        }
+    }
+}

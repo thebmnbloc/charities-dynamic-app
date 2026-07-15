@@ -1,0 +1,86 @@
+/*!--------------------
+Template Name: Charitics - NGO & Non Profit HTML Template
+Author: tempticspro
+Version: 1.0
+
+CSS INDEX
+=================== 
+01. CUSTOM PROPERTIES
+02. GLOBAL
+03. Components
+04. Sidebar
+05. Header
+06. Banner
+07. About
+08. Donations
+09. Donate Form
+10. Stats
+11. Events
+12. Why Join Us
+13. Team
+14. Testimonial
+15. Blog
+16. Gallery
+17. CTA
+18. Footer
+19. Features
+20. Volunteer
+21. Services
+22. Projects
+23. Contact
+
+--- INNER PAGES
+24. About Page
+25. Blog Page
+26. Service Details Page
+27. Donation Details Page
+28. Event Details Page
+29. Project Details Page
+30. Blog Details Page
+31. Contact Page
+32. 404 Page
+33. Team Details Page
+34. Pricing Page
+
+*/
+
+@import "main/breakpoints";
+@import "main/variables";
+@import "main/global";
+@import "main/components";
+
+// sections
+@import "sections/sidebar";
+@import "sections/header";
+@import "sections/banner";
+@import "sections/about";
+@import "sections/donations";
+@import "sections/donate-form";
+@import "sections/stats";
+@import "sections/events";
+@import "sections/why-join-us";
+@import "sections/team";
+@import "sections/testimonial";
+@import "sections/blog";
+@import "sections/gallery";
+@import "sections/cta";
+@import "sections/footer";
+
+@import "sections/features";
+@import "sections/volunteer";
+@import "sections/services";
+@import "sections/projects";
+@import "sections/contact";
+
+// inner pages
+@import "pages/about";
+@import "pages/p-blog";
+@import "pages/service-details";
+@import "pages/donation-details";
+@import "pages/event-details";
+@import "pages/project-details";
+@import "pages/blog-details";
+@import "pages/p-contact";
+@import "pages/404";
+@import "pages/team-details";
+@import "pages/pricing";

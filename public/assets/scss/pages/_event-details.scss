@@ -1,0 +1,100 @@
+.ul-event-details {
+    &-img {
+        border-radius: clamp(15px, 1.58vw, 30px);
+        overflow: hidden;
+        margin-bottom: clamp(15px, 1.58vw, 30px);
+    }
+
+    &-infos {
+        display: flex;
+        align-items: center;
+        gap: clamp(15px, 1.58vw, 30px);
+        font-size: clamp(13px, 0.84vw, 16px);
+        font-weight: 500;
+        color: var(--ul-gray);
+        margin-bottom: clamp(6px, 0.47vw, 9px);
+    }
+
+    &-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        line-height: 1;
+
+        i {
+            font-size: clamp(15px, 0.95vw, 18px);
+            color: var(--ul-primary);
+        }
+    }
+
+    &-title,
+    h2 {
+        font-family: var(--font-quicksand);
+        font-weight: 700;
+        font-size: clamp(26px, 2.63vw, 50px);
+        line-height: 120%;
+        letter-spacing: -0.04em;
+        color: var(--ul-black);
+        margin-bottom: clamp(11px, 1.10vw, 21px);
+    }
+
+    &-inner-title,
+    h3 {
+        font-weight: 700;
+        font-size: clamp(26px, 1.68vw, 32px);
+        font-family: var(--font-quicksand);
+        margin-bottom: clamp(10px, 1.05vw, 20px);
+        margin-top: clamp(23px, 2.26vw, 43px);
+    }
+
+    &-descr,
+    p {
+        font-size: clamp(13px, 0.84vw, 16px);
+        line-height: 167%;
+        color: var(--ul-p);
+        margin-bottom: clamp(8px, 0.79vw, 15px);
+    }
+
+    &-list,
+    ul {
+        li {
+            font-size: clamp(15px, 0.95vw, 18px);
+            color: var(--ul-black);
+            font-weight: 500;
+            display: flex;
+            align-items: baseline;
+            gap: clamp(7px, 0.53vw, 10px);
+            margin-bottom: clamp(10px, 1.05vw, 20px);
+
+            &::before {
+                content: "\f139";
+                font-family: flaticon_charitics !important;
+                font-style: normal;
+                font-weight: normal !important;
+                font-variant: normal;
+                text-transform: none;
+                line-height: 1;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                display: block;
+            }
+        }
+    }
+
+    &-map {
+        iframe {
+            width: 100%;
+            aspect-ratio: 890/524;
+            border-radius: clamp(15px, 1.58vw, 30px);
+        }
+    }
+}
+
+.ul-form {
+
+    input,
+    textarea {
+        background-color: var(--ul-gray3);
+        border-color: var(--ul-gray3);
+    }
+}

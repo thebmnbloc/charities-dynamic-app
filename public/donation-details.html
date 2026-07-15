@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donation Details | Charities</title>
+<link rel="icon" href="/assets/img/logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/vendor/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/assets/icon/flaticon_charitics.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+<header class="ul-header">
+  <div class="ul-header-bottom to-be-sticky">
+    <div class="ul-header-bottom-wrapper ul-header-container">
+      <div class="logo-container"><a href="/" class="d-inline-block"><img src="/assets/img/logo.svg" alt="logo" class="logo"></a></div>
+      <div class="ul-header-nav-wrapper"><div class="to-go-to-sidebar-in-mobile"><nav class="ul-header-nav">
+        <div class="has-sub-menu"><a role="button">Home</a><div class="ul-header-submenu"><ul><li><a href="/">Home</a></li></ul></div></div>
+        <a href="/about">About</a>
+        <div class="has-sub-menu"><a role="button">Pages</a><div class="ul-header-submenu"><ul><li><a href="/services">Services</a></li><li><a href="/projects">Projects</a></li><li><a href="/team">Team</a></li><li><a href="/pricing">Pricing Plans</a></li><li><a href="/faq">FAQs</a></li></ul></div></div>
+        <div class="has-sub-menu"><a role="button">Donation</a><div class="ul-header-submenu"><ul><li><a href="/donations">Donation Listing</a></li></ul></div></div>
+        <div class="has-sub-menu"><a role="button">Event</a><div class="ul-header-submenu"><ul><li><a href="/events">Events</a></li></ul></div></div>
+        <div class="has-sub-menu"><a role="button">Blog</a><div class="ul-header-submenu"><ul><li><a href="/blog">Blogs</a></li></ul></div></div>
+        <a href="/contact">Contact</a>
+      </nav></div></div>
+      <div class="ul-header-actions">
+        <a href="/contact" class="ul-btn d-sm-inline-flex d-none"><i class="flaticon-fast-forward-double-right-arrows-symbol"></i> Join With us</a>
+        <button class="ul-header-sidebar-opener d-lg-none d-inline-flex"><i class="flaticon-menu"></i></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="ul-breadcrumb">
+  <div class="ul-inner-container">
+    <h1 class="ul-breadcrumb-title">Donation Details</h1>
+    <ul class="ul-breadcrumb-nav"><li><a href="/">Home</a></li><li class="separator"><i class="flaticon-right-arrow"></i></li><li><a href="/donations">Donations</a></li><li class="separator"><i class="flaticon-right-arrow"></i></li><li id="breadcrumb-name">Details</li></ul>
+  </div>
+</section>
+
+<section class="ul-section-spacing">
+  <div class="ul-inner-page-container">
+    <div id="donation-details"></div>
+  </div>
+</section>
+
+<footer class="ul-footer">
+  <div class="ul-footer-middle"><div class="ul-footer-container"><div class="ul-footer-middle-wrapper">
+    <div class="ul-footer-about"><a href="/" class="d-inline-block"><img src="/assets/img/logo-white.svg" alt="logo" class="logo"></a><p class="ul-footer-about-txt">We are a non-profit organization dedicated to making the world a better place through charitable activities.</p><div class="ul-footer-socials"><a href="#"><i class="flaticon-facebook"></i></a><a href="#"><i class="flaticon-twitter"></i></a><a href="#"><i class="flaticon-linkedin"></i></a><a href="#"><i class="flaticon-youtube"></i></a></div></div>
+    <div class="ul-footer-widget"><h4 class="ul-footer-widget-title">Quick Links</h4><div class="ul-footer-widget-links"><a href="/about">About Us</a><a href="/services">Our Services</a><a href="/projects">Our Projects</a><a href="/donations">Donations</a><a href="/blog">Latest News</a></div></div>
+    <div class="ul-footer-widget"><h4 class="ul-footer-widget-title">Support</h4><div class="ul-footer-widget-links"><a href="/faq">FAQs</a><a href="/pricing">Pricing Plans</a><a href="/team">Our Team</a><a href="/events">Events</a><a href="/contact">Contact Us</a></div></div>
+  </div></div></div>
+  <div class="ul-footer-bottom"><div class="ul-footer-container"><div class="ul-footer-bottom-wrapper"><p class="copyright-txt">&copy; 2026 Charities. All Rights Reserved.</p><div class="ul-footer-bottom-nav"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div></div></div></div>
+</footer>
+
+<script src="/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/animate-wow/wow.min.js"></script>
+<script src="/assets/js/main.js"></script>
+<script src="/assets/js/donate-form.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', async function() {
+  const id = new URLSearchParams(window.location.search).get('id') || '1';
+  const container = document.getElementById('donation-details');
+  const breadcrumbName = document.getElementById('breadcrumb-name');
+  try {
+    const res = await fetch('/api/donations/' + id);
+    if (!res.ok) throw new Error('Not found');
+    const d = await res.json();
+    breadcrumbName.textContent = d.title;
+    const pct = d.goal > 0 ? Math.round((d.raised / d.goal) * 100) : 0;
+    container.innerHTML = `
+      <div class="row">
+        <div class="col-lg-7">
+          <div class="ul-donation-details">
+            <div class="ul-donation-details-img"><img src="/${d.image}" alt="${d.title}"></div>
+            <h2 class="ul-donation-details-raised">$${Number(d.raised).toLocaleString()} <span class="target"> Raised of $${Number(d.goal).toLocaleString()} goal</span></h2>
+            <div class="ul-donation-progress">
+              <div class="ul-progress-container"><div class="ul-progressbar" style="width:${pct}%;"></div></div>
+              <div class="ul-donation-progress-labels"><span>${pct}% Complete</span><span>Goal: $${Number(d.goal).toLocaleString()}</span></div>
+            </div>
+            <p style="margin-top: 20px;">${d.description || ''}</p>
+            ${d.summary ? '<p style="margin-top: 15px;">' + d.summary + '</p>' : ''}
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="ul-donation-details-donate-form-wrapper">
+            <div class="ul-donation-details-notice" style="margin-bottom: 25px;">
+              <i class="flaticon-fast-forward-double-right-arrows-symbol" style="color: var(--ul-primary); font-size: 24px;"></i>
+              <p><strong>Donate now</strong> and help us reach our goal!</p>
+            </div>
+            <div class="selected-amount" id="selected-amount">
+              <span class="currency">$</span>
+              <span id="selected-amount-value">0</span>
+            </div>
+            <form id="donate-form">
+              <div class="ul-donate-form" style="flex-direction: column; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                  <label style="height: 40px; padding: 0 20px; border-radius: 999px; font-weight: 700; background-color: var(--ul-gray3); display: flex; align-items: center; cursor: pointer;">$25<input type="radio" name="amount" value="25" style="display:none;"></label>
+                  <label style="height: 40px; padding: 0 20px; border-radius: 999px; font-weight: 700; background-color: var(--ul-gray3); display: flex; align-items: center; cursor: pointer;">$50<input type="radio" name="amount" value="50" style="display:none;"></label>
+                  <label style="height: 40px; padding: 0 20px; border-radius: 999px; font-weight: 700; background-color: var(--ul-gray3); display: flex; align-items: center; cursor: pointer;">$100<input type="radio" name="amount" value="100" style="display:none;"></label>
+                  <label style="height: 40px; padding: 0 20px; border-radius: 999px; font-weight: 700; background-color: var(--ul-gray3); display: flex; align-items: center; cursor: pointer;">$250<input type="radio" name="amount" value="250" style="display:none;"></label>
+                </div>
+                <input type="number" placeholder="Custom Amount" style="height: 45px; border: 1px solid #ddd; border-radius: 999px; padding: 0 20px; width: 100%;">
+                <button type="submit" class="ul-btn" style="width: 100%; justify-content: center;"><i class="flaticon-fast-forward-double-right-arrows-symbol"></i> Donate Now</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    `;
+  } catch(e) {
+    container.innerHTML = '<p class="text-center">Donation not found.</p>';
+  }
+});
+</script>
+</body>
+</html>

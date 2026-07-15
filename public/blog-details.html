@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog Details | Charities</title>
+<link rel="icon" href="/assets/img/logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/vendor/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/assets/icon/flaticon_charitics.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+<header class="ul-header">
+  <div class="ul-header-bottom to-be-sticky">
+    <div class="ul-header-bottom-wrapper ul-header-container">
+      <div class="logo-container"><a href="/" class="d-inline-block"><img src="/assets/img/logo.svg" alt="logo" class="logo"></a></div>
+      <div class="ul-header-nav-wrapper"><div class="to-go-to-sidebar-in-mobile"><nav class="ul-header-nav">
+        <div class="has-sub-menu"><a role="button">Home</a><div class="ul-header-submenu"><ul><li><a href="/">Home</a></li></ul></div></div>
+        <a href="/about">About</a>
+        <div class="has-sub-menu"><a role="button">Pages</a><div class="ul-header-submenu"><ul><li><a href="/services">Services</a></li><li><a href="/projects">Projects</a></li><li><a href="/team">Team</a></li><li><a href="/pricing">Pricing Plans</a></li><li><a href="/faq">FAQs</a></li></ul></div></div>
+        <div class="has-sub-menu"><a role="button">Donation</a><div class="ul-header-submenu"><ul><li><a href="/donations">Donation Listing</a></li></ul></div></div>
+        <div class="has-sub-menu"><a role="button">Event</a><div class="ul-header-submenu"><ul><li><a href="/events">Events</a></li></ul></div></div>
+        <div class="has-sub-menu"><a role="button">Blog</a><div class="ul-header-submenu"><ul><li><a href="/blog">Blogs</a></li></ul></div></div>
+        <a href="/contact">Contact</a>
+      </nav></div></div>
+      <div class="ul-header-actions">
+        <a href="/contact" class="ul-btn d-sm-inline-flex d-none"><i class="flaticon-fast-forward-double-right-arrows-symbol"></i> Join With us</a>
+        <button class="ul-header-sidebar-opener d-lg-none d-inline-flex"><i class="flaticon-menu"></i></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="ul-breadcrumb">
+  <div class="ul-inner-container">
+    <h1 class="ul-breadcrumb-title">Blog Details</h1>
+    <ul class="ul-breadcrumb-nav"><li><a href="/">Home</a></li><li class="separator"><i class="flaticon-right-arrow"></i></li><li><a href="/blog">Blog</a></li><li class="separator"><i class="flaticon-right-arrow"></i></li><li id="breadcrumb-name">Details</li></ul>
+  </div>
+</section>
+
+<section class="ul-section-spacing">
+  <div class="ul-inner-page-container">
+    <div class="row">
+      <div class="col-lg-8" id="blog-content"></div>
+      <div class="col-lg-4" id="blog-sidebar"></div>
+    </div>
+  </div>
+</section>
+
+<footer class="ul-footer">
+  <div class="ul-footer-middle"><div class="ul-footer-container"><div class="ul-footer-middle-wrapper">
+    <div class="ul-footer-about"><a href="/" class="d-inline-block"><img src="/assets/img/logo-white.svg" alt="logo" class="logo"></a><p class="ul-footer-about-txt">We are a non-profit organization dedicated to making the world a better place through charitable activities.</p><div class="ul-footer-socials"><a href="#"><i class="flaticon-facebook"></i></a><a href="#"><i class="flaticon-twitter"></i></a><a href="#"><i class="flaticon-linkedin"></i></a><a href="#"><i class="flaticon-youtube"></i></a></div></div>
+    <div class="ul-footer-widget"><h4 class="ul-footer-widget-title">Quick Links</h4><div class="ul-footer-widget-links"><a href="/about">About Us</a><a href="/services">Our Services</a><a href="/projects">Our Projects</a><a href="/donations">Donations</a><a href="/blog">Latest News</a></div></div>
+    <div class="ul-footer-widget"><h4 class="ul-footer-widget-title">Support</h4><div class="ul-footer-widget-links"><a href="/faq">FAQs</a><a href="/pricing">Pricing Plans</a><a href="/team">Our Team</a><a href="/events">Events</a><a href="/contact">Contact Us</a></div></div>
+  </div></div></div>
+  <div class="ul-footer-bottom"><div class="ul-footer-container"><div class="ul-footer-bottom-wrapper"><p class="copyright-txt">&copy; 2026 Charities. All Rights Reserved.</p><div class="ul-footer-bottom-nav"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div></div></div></div>
+</footer>
+
+<script src="/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/animate-wow/wow.min.js"></script>
+<script src="/assets/js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', async function() {
+  const id = new URLSearchParams(window.location.search).get('id') || '1';
+  const content = document.getElementById('blog-content');
+  const sidebar = document.getElementById('blog-sidebar');
+  const breadcrumbName = document.getElementById('breadcrumb-name');
+  try {
+    const res = await fetch('/api/blogs/' + id);
+    if (!res.ok) throw new Error('Not found');
+    const b = await res.json();
+    breadcrumbName.textContent = b.title;
+    const d = new Date(b.created_at);
+    content.innerHTML = `
+      <div class="ul-blog-inner">
+        <div class="ul-blog-img"><img src="/${b.image}" alt="${b.title}"></div>
+        <div class="ul-blog-txt">
+          <div class="ul-blog-infos" style="border: none; gap: 20px; margin-bottom: 10px;">
+            <div class="ul-blog-info" style="padding: 0; border: none; width: auto;"><i class="flaticon-user"></i> ${b.author || 'Admin'}</div>
+            <div class="ul-blog-info" style="padding: 0; border: none; width: auto;"><i class="flaticon-calendar"></i> ${d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+            <div class="ul-blog-info" style="padding: 0; border: none; width: auto;"><i class="flaticon-tag"></i> ${b.category || ''}</div>
+          </div>
+          <h2 class="ul-blog-title" style="border-bottom: none; padding-bottom: 0;">${b.title}</h2>
+          <div style="color: var(--ul-p); line-height: 1.8;">${b.content || '<p>' + (b.excerpt || '') + '</p>'}</div>
+        </div>
+      </div>
+    `;
+    const allRes = await fetch('/api/blogs');
+    const allBlogs = await allRes.json();
+    sidebar.innerHTML = `
+      <div class="ul-inner-sidebar">
+        <div class="ul-inner-sidebar-widget">
+          <h4 class="ul-inner-sidebar-widget-title">Recent Posts</h4>
+          ${allBlogs.slice(0, 5).map(ob => `
+            <div class="ul-inner-sidebar-post">
+              <div class="img"><a href="/blog/${ob.id}"><img src="/${ob.image}" alt="${ob.title}"></a></div>
+              <div>
+                <div class="date"><span class="icon"><i class="flaticon-calendar"></i></span> ${new Date(ob.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</div>
+                <h5 class="title"><a href="/blog/${ob.id}">${ob.title}</a></h5>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="ul-inner-sidebar-widget">
+          <h4 class="ul-inner-sidebar-widget-title">Tags</h4>
+          <div class="ul-inner-sidebar-tags">
+            ${(b.tags || '').split(',').map(t => '<a href="#">' + t.trim() + '</a>').join('')}
+          </div>
+        </div>
+      </div>
+    `;
+  } catch(e) {
+    content.innerHTML = '<p>Blog post not found.</p>';
+  }
+});
+</script>
+</body>
+</html>

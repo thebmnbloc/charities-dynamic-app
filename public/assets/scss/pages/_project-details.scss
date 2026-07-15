@@ -1,0 +1,115 @@
+.ul-project-details {
+    &-img-slider {
+        border-radius: clamp(15px, 1.58vw, 30px);
+        margin-bottom: clamp(30px, 3.15vw, 60px);
+
+        .ul-slider-nav {
+            left: clamp(15px, 1.58vw, 30px);
+            right: clamp(15px, 1.58vw, 30px);
+            width: auto;
+
+            button {
+                background-color: var(--white);
+                color: var(--ul-black);
+
+                &:hover {
+                    background-color: var(--ul-primary);
+                    color: var(--white);
+                }
+            }
+        }
+    }
+
+    &-infos {
+        background-color: var(--ul-black);
+        color: var(--white);
+        padding: clamp(20px, 2.10vw, 40px);
+        border-radius: 18px;
+
+        &-title {
+            font-family: var(--font-quicksand);
+            font-weight: 700;
+            font-size: clamp(24px, 1.68vw, 32px);
+            line-height: 120%;
+            color: var(--white);
+            margin-bottom: clamp(15px, 1.31vw, 25px);
+        }
+
+        &-list {
+            margin-bottom: clamp(17px, 1.94vw, 37px);
+
+            li {
+                margin-bottom: 10px;
+                display: flex;
+                --gap-beween: clamp(5px, 1.84vw, 35px);
+                gap: var(--gap-beween);
+                margin-bottom: clamp(8px, 0.95vw, 18px);
+
+                .key {
+                    min-width: clamp(80px, 4.36vw, 83px);
+                    display: block;
+                    width: calc(30% - var(--gap-beween));
+                }
+
+                .value {
+                    width: calc(70% - var(--gap-beween));
+                    margin-left: auto;
+                }
+            }
+        }
+
+        &-shares {
+            a {
+                border-radius: 50%;
+            }
+        }
+    }
+
+    &-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid rgba(67, 67, 67, 0.3);
+        border-width: 1px 0;
+        padding: clamp(20px, 3.15vw, 60px) 0;
+        margin-top: clamp(30px, 5.25vw, 100px);
+
+        button,
+        a {
+            display: flex;
+            align-items: center;
+            visibility: hidden;
+            font-weight: 700;
+            gap: clamp(5px, 0.42vw, 8px);
+            color: var(--ul-black);
+
+            &:hover {
+                color: var(--ul-primary);
+
+                i {
+                    background-color: var(--ul-primary);
+                }
+            }
+
+            >* {
+                visibility: visible;
+            }
+
+            i {
+                width: clamp(35px, 2.10vw, 40px);
+                aspect-ratio: 1/1;
+                border-radius: 999px;
+                background-color: var(--ul-black);
+                color: var(--white);
+                align-items: center;
+                justify-content: center;
+                font-size: clamp(13px, 0.84vw, 16px);
+                transition: 0.4s ease;
+            }
+
+            &:last-child {
+                flex-direction: row-reverse;
+            }
+        }
+    }
+}

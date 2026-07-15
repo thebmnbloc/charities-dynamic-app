@@ -1,0 +1,117 @@
+.ul-team-details {
+    &-img {
+        flex-shrink: 0;
+        border-radius: 20px;
+        overflow: hidden;
+        position: sticky;
+        top: clamp(20px, 2.10vw, 40px);
+
+        img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+    }
+
+    &-name {
+        margin-bottom: clamp(5px, 0.42vw, 8px);
+    }
+
+    &-role {
+        font-weight: 600;
+        font-size: clamp(16px, 1.05vw, 20px);
+        color: var(--ul-black);
+        margin-bottom: clamp(15px, 1.52vw, 29px);
+    }
+
+    &-descr {
+        font-size: clamp(13px, 0.84vw, 16px);
+        line-height: 1.5;
+        color: var(--ul-gray);
+        margin-bottom: clamp(15px, 0.95vw, 18px);
+    }
+
+    &-infos {
+        margin-bottom: clamp(15px, 1.58vw, 30px);
+    }
+
+    &-info {
+        margin-bottom: clamp(7px, 0.63vw, 12px);
+
+        &,
+        a {
+            font-size: clamp(13px, 0.84vw, 16px);
+            font-weight: 600;
+            color: var(--ul-black);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        a:hover {
+            color: var(--ul-primary);
+        }
+    }
+
+    &-socials {
+        display: flex;
+        gap: clamp(5px, 0.42vw, 8px);
+        font-weight: 500;
+        margin-bottom: clamp(30px, 3.42vw, 65px);
+
+        a {
+            color: var(--ul-black);
+            font-size: clamp(13px, 0.84vw, 16px);
+            background-color: var(--ul-gray3);
+            width: clamp(36px, 2.31vw, 44px);
+            aspect-ratio: 1/1;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:hover {
+                color: var(--white);
+                background-color: var(--ul-primary);
+            }
+        }
+    }
+
+    &-experiences {
+        margin-bottom: clamp(30px, 3.42vw, 65px);
+    }
+
+    &-experience {
+        margin-bottom: clamp(15px, 1.31vw, 25px);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        .experience-title {
+            font-weight: 700;
+            color: var(--ul-black);
+            margin-bottom: 0;
+        }
+
+        .ul-progress-container {
+            background-color: rgba(235, 82, 16, 0.5);
+            border: none;
+        }
+
+        .ul-progressbar {
+            height: clamp(7px, 0.53vw, 10px);
+            border-radius: 999px;
+
+            &::before {
+                content: none;
+            }
+        }
+
+        .ul-progress-label {
+            font-weight: 700;
+            color: var(--ul-black);
+            font-size: clamp(13px, 0.84vw, 16px);
+        }
+    }
+}

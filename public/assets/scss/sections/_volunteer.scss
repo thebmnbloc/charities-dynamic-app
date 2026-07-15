@@ -1,0 +1,108 @@
+.ul-volunteer {
+    &-block {
+        background: url(../img/volunteer-bg-1.jpg) no-repeat center center/cover;
+        position: relative;
+        z-index: 1;
+        padding: clamp(25px, 2.10vw, 40px) clamp(15px, 8.41vw, 160px);
+        color: var(--white);
+        height: 100%;
+
+        @include lg {
+            padding: clamp(25px, 2.10vw, 40px) clamp(15px, 3.41vw, 160px);
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 87, 40, 0.9);
+            z-index: -1;
+        }
+
+        .ul-btn {
+            background-color: var(--white);
+            color: var(--black);
+
+            &:hover {
+                background-color: transparent;
+                color: var(--white);
+                border-color: var(--white);
+
+                i {
+                    background-color: var(--white);
+                    color: var(--ul-primary);
+                }
+            }
+
+            i {
+                background-color: var(--ul-primary);
+                color: var(--white);
+            }
+        }
+    }
+
+    &-title {
+        font-family: var(--font-caveat);
+        font-weight: 400;
+        font-size: clamp(30px, 2.10vw, 40px);
+    }
+
+    &-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px clamp(30px, 2.10vw, 40px);
+        margin-bottom: clamp(15px, 1.31vw, 25px);
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: clamp(7px, 0.53vw, 10px);
+
+            &::before {
+                content: "\f106";
+                font-family: flaticon_charitics !important;
+                font-style: normal;
+                font-weight: normal !important;
+                font-variant: normal;
+                text-transform: none;
+                line-height: 1;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+
+                font-size: clamp(9px, 0.63vw, 12px);
+            }
+        }
+    }
+}
+
+.ul-donate-form-wrapper-2 {
+    background-image: url(../img/donate-form-2-bg.jpg);
+
+    &::before {
+        background-color: var(--ul-black);
+        opacity: 80%;
+    }
+}
+
+.ul-donate-form-2 {
+    label {
+        color: var(--white);
+        background-color: transparent;
+        border: 1px solid var(--white);
+
+    }
+
+    input {
+        &:checked+label {
+            border-color: var(--ul-primary);
+        }
+
+        &::placeholder {
+            color: var(--white);
+        }
+    }
+
+    .custom-amount-wrapper input {
+        color: var(--white);
+    }
+}
