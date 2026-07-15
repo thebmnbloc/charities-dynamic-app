@@ -42,18 +42,28 @@ app.use('/api/settings', require('./api/routes/settings'));
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public/index.html')));
 app.get('/about', (req, res) => res.sendFile(path.join(__dirname, 'public/about.html')));
 app.get('/services', (req, res) => res.sendFile(path.join(__dirname, 'public/services.html')));
+app.get('/service', (req, res) => res.sendFile(path.join(__dirname, 'public/service-details.html')));
 app.get('/service/:id', (req, res) => res.sendFile(path.join(__dirname, 'public/service-details.html')));
 app.get('/projects', (req, res) => res.sendFile(path.join(__dirname, 'public/projects.html')));
+app.get('/project', (req, res) => res.sendFile(path.join(__dirname, 'public/project-details.html')));
 app.get('/project/:id', (req, res) => res.sendFile(path.join(__dirname, 'public/project-details.html')));
-app.get('/team', (req, res) => res.sendFile(path.join(__dirname, 'public/team.html')));
+app.get('/team', (req, res) => {
+  if (req.query.id) return res.sendFile(path.join(__dirname, 'public/team-details.html'));
+  res.sendFile(path.join(__dirname, 'public/team.html'));
+});
 app.get('/team/:id', (req, res) => res.sendFile(path.join(__dirname, 'public/team-details.html')));
 app.get('/pricing', (req, res) => res.sendFile(path.join(__dirname, 'public/pricing.html')));
 app.get('/faq', (req, res) => res.sendFile(path.join(__dirname, 'public/faq.html')));
 app.get('/donations', (req, res) => res.sendFile(path.join(__dirname, 'public/donations.html')));
+app.get('/donation', (req, res) => res.sendFile(path.join(__dirname, 'public/donation-details.html')));
 app.get('/donation/:id', (req, res) => res.sendFile(path.join(__dirname, 'public/donation-details.html')));
 app.get('/events', (req, res) => res.sendFile(path.join(__dirname, 'public/events.html')));
+app.get('/event', (req, res) => res.sendFile(path.join(__dirname, 'public/event-details.html')));
 app.get('/event/:id', (req, res) => res.sendFile(path.join(__dirname, 'public/event-details.html')));
-app.get('/blog', (req, res) => res.sendFile(path.join(__dirname, 'public/blog.html')));
+app.get('/blog', (req, res) => {
+  if (req.query.id) return res.sendFile(path.join(__dirname, 'public/blog-details.html'));
+  res.sendFile(path.join(__dirname, 'public/blog.html'));
+});
 app.get('/blog/:id', (req, res) => res.sendFile(path.join(__dirname, 'public/blog-details.html')));
 app.get('/contact', (req, res) => res.sendFile(path.join(__dirname, 'public/contact.html')));
 
