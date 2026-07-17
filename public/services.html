@@ -61,6 +61,37 @@
       </div>
       <div id="newsletter-error" style="display: none; color: #dc2626; padding: 10px; text-align: center; margin-top: 10px;"></div>
     </form>
+<script>
+document.getElementById('newsletter-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  var emailInput = document.getElementById('newsletter-email');
+  var successMsg = document.getElementById('newsletter-success');
+  var errorMsg = document.getElementById('newsletter-error');
+  var submitBtn = this.querySelector('button[type="submit"]');
+  var email = emailInput.value.trim();
+  if (!email) return;
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<i class="flaticon-fast-forward-double-right-arrows-symbol"></i> Subscribing...';
+  successMsg.style.display = 'none';
+  if (errorMsg) errorMsg.style.display = 'none';
+  try {
+    var res = await fetch('/api/subscribers', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email }) });
+    var data = await res.json();
+    if (res.ok) {
+      successMsg.style.display = 'block';
+      emailInput.value = '';
+    } else if (res.status === 409 && data.error === 'already_subscribed') {
+      if (errorMsg) { errorMsg.textContent = 'This email is already subscribed.'; errorMsg.style.display = 'block'; }
+    } else {
+      if (errorMsg) { errorMsg.textContent = 'Something went wrong. Please try again.'; errorMsg.style.display = 'block'; }
+    }
+  } catch(err) {
+    if (errorMsg) { errorMsg.textContent = 'Network error. Please try again.'; errorMsg.style.display = 'block'; }
+  }
+  submitBtn.disabled = false;
+  submitBtn.innerHTML = '<i class="flaticon-fast-forward-double-right-arrows-symbol"></i> Subscribe';
+});
+</script>
   </div>
 </section>
 
@@ -85,7 +116,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     grid.innerHTML = services.map(s => `
       <div class="col-lg-3 col-md-6 mb-4">
         <div class="ul-service ul-service--inner">
-          <div class="ul-service-img"><img src="/${s.image}" alt="${s.title}"></div>
+          <div class="ul-service-img"><img src="${s.image}" alt="${s.title}"></div>
           <h3 class="ul-service-title">${s.title}</h3>
           <p class="ul-service-descr">${s.description || ''}</p>
           <a href="/service?id=${s.id}" class="ul-service-btn">Read More <i class="flaticon-fast-forward-double-right-arrows-symbol"></i></a>

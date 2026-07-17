@@ -60,6 +60,37 @@
       </div>
       <div id="newsletter-error" style="display: none; color: #dc2626; padding: 10px; text-align: center; margin-top: 10px;"></div>
     </form>
+<script>
+document.getElementById('newsletter-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  var emailInput = document.getElementById('newsletter-email');
+  var successMsg = document.getElementById('newsletter-success');
+  var errorMsg = document.getElementById('newsletter-error');
+  var submitBtn = this.querySelector('button[type="submit"]');
+  var email = emailInput.value.trim();
+  if (!email) return;
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<i class="flaticon-fast-forward-double-right-arrows-symbol"></i> Subscribing...';
+  successMsg.style.display = 'none';
+  if (errorMsg) errorMsg.style.display = 'none';
+  try {
+    var res = await fetch('/api/subscribers', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email }) });
+    var data = await res.json();
+    if (res.ok) {
+      successMsg.style.display = 'block';
+      emailInput.value = '';
+    } else if (res.status === 409 && data.error === 'already_subscribed') {
+      if (errorMsg) { errorMsg.textContent = 'This email is already subscribed.'; errorMsg.style.display = 'block'; }
+    } else {
+      if (errorMsg) { errorMsg.textContent = 'Something went wrong. Please try again.'; errorMsg.style.display = 'block'; }
+    }
+  } catch(err) {
+    if (errorMsg) { errorMsg.textContent = 'Network error. Please try again.'; errorMsg.style.display = 'block'; }
+  }
+  submitBtn.disabled = false;
+  submitBtn.innerHTML = '<i class="flaticon-fast-forward-double-right-arrows-symbol"></i> Subscribe';
+});
+</script>
   </div>
 </section>
 
@@ -87,7 +118,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     breadcrumbName.textContent = e.title;
     const d = new Date(e.event_date);
     container.innerHTML = `
-      <div style="border-radius: 20px; overflow: hidden; margin-bottom: 30px;"><img src="/${e.image}" alt="${e.title}" style="width:100%;"></div>
+      <div style="border-radius: 20px; overflow: hidden; margin-bottom: 30px;"><img src="${e.image}" alt="${e.title}" style="width:100%;"></div>
       <h2 style="font-family: var(--font-quicksand); font-weight: 700; font-size: clamp(22px, 2.1vw, 40px); margin-bottom: 15px;">${e.title}</h2>
       <div style="display: flex; gap: 30px; margin-bottom: 25px; flex-wrap: wrap;">
         <div style="display: flex; align-items: center; gap: 8px;"><i class="flaticon-calendar" style="color: var(--ul-primary);"></i> <strong>${d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</strong></div>

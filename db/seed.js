@@ -13,10 +13,10 @@ async function seedDatabase() {
 
     // Seed team members
     const teamMembers = [
-      { name: 'Danial Frankie', role: 'Co-Founder', image: 'assets/img/member-1.jpg', bio: 'Adipiscing elit. Mauris viverra nisl quis mollis laoreet. Ut eget lacus a felis accumsan pharetra in dignissim enim.', phone: '+208-555-0112', email: 'thomas.tatum@example.com', facebook: '#', twitter: '#', linkedin: '#', instagram: '#', experience: JSON.stringify([{name:'Productivity',value:90},{name:'Digital Marketing',value:87},{name:'Technology',value:65}]) },
-      { name: 'John Doe', role: 'Attorney', image: 'assets/img/member-2.jpg', bio: 'Professional attorney with 10+ years of experience in non-profit law.', phone: '+208-555-0113', email: 'john.doe@example.com', facebook: '#', twitter: '#', linkedin: '#', instagram: '#', experience: JSON.stringify([{name:'Legal',value:95},{name:'Management',value:80},{name:'Strategy',value:75}]) },
-      { name: 'Sarah Wilson', role: 'Project Director', image: 'assets/img/member-3.jpg', bio: 'Leading our global initiatives with passion and dedication.', phone: '+208-555-0114', email: 'sarah.w@example.com', facebook: '#', twitter: '#', linkedin: '#', instagram: '#', experience: JSON.stringify([{name:'Leadership',value:92},{name:'Planning',value:88},{name:'Communication',value:85}]) },
-      { name: 'Mike Johnson', role: 'Volunteer Lead', image: 'assets/img/member-4.jpg', bio: 'Coordinating our volunteer network across 20+ countries.', phone: '+208-555-0115', email: 'mike.j@example.com', facebook: '#', twitter: '#', linkedin: '#', instagram: '#', experience: JSON.stringify([{name:'Coordination',value:90},{name:'Team Building',value:85},{name:'Fundraising',value:80}]) },
+      { name: 'Danial Frankie', role: 'Co-Founder', image: '/assets/img/member-1.jpg', bio: 'Adipiscing elit. Mauris viverra nisl quis mollis laoreet. Ut eget lacus a felis accumsan pharetra in dignissim enim.', phone: '+208-555-0112', email: 'thomas.tatum@example.com', facebook: '#', twitter: '#', linkedin: '#', instagram: '#', experience: JSON.stringify([{name:'Productivity',value:90},{name:'Digital Marketing',value:87},{name:'Technology',value:65}]) },
+      { name: 'John Doe', role: 'Attorney', image: '/assets/img/member-2.jpg', bio: 'Professional attorney with 10+ years of experience in non-profit law.', phone: '+208-555-0113', email: 'john.doe@example.com', facebook: '#', twitter: '#', linkedin: '#', instagram: '#', experience: JSON.stringify([{name:'Legal',value:95},{name:'Management',value:80},{name:'Strategy',value:75}]) },
+      { name: 'Sarah Wilson', role: 'Project Director', image: '/assets/img/member-3.jpg', bio: 'Leading our global initiatives with passion and dedication.', phone: '+208-555-0114', email: 'sarah.w@example.com', facebook: '#', twitter: '#', linkedin: '#', instagram: '#', experience: JSON.stringify([{name:'Leadership',value:92},{name:'Planning',value:88},{name:'Communication',value:85}]) },
+      { name: 'Mike Johnson', role: 'Volunteer Lead', image: '/assets/img/member-4.jpg', bio: 'Coordinating our volunteer network across 20+ countries.', phone: '+208-555-0115', email: 'mike.j@example.com', facebook: '#', twitter: '#', linkedin: '#', instagram: '#', experience: JSON.stringify([{name:'Coordination',value:90},{name:'Team Building',value:85},{name:'Fundraising',value:80}]) },
     ];
     for (const member of teamMembers) {
       await pool.query(
@@ -29,10 +29,10 @@ async function seedDatabase() {
 
     // Seed services
     const services = [
-      { title: 'Fund Raised & Donation', description: 'Professional Detailed Residential Cleaning, Ensuring Spotless Homes And Healthy Living Spaces.', image: 'assets/img/service-1.jpg', details: 'We raise funds through various channels to support communities in need.' },
-      { title: 'Medical Treatment Help', description: 'Professional Detailed Residential Cleaning, Ensuring Spotless Homes And Healthy Living Spaces.', image: 'assets/img/service-2.jpg', details: 'Providing access to quality healthcare for underserved communities.' },
-      { title: 'Child Medical Research', description: 'Professional Detailed Residential Cleaning, Ensuring Spotless Homes And Healthy Living Spaces.', image: 'assets/img/service-3.jpg', details: 'Investing in research to improve child healthcare outcomes worldwide.' },
-      { title: 'Development Programs', description: 'Professional Detailed Residential Cleaning, Ensuring Spotless Homes And Healthy Living Spaces.', image: 'assets/img/service-4.jpg', details: 'Comprehensive development programs for sustainable community growth.' },
+      { title: 'Fund Raised & Donation', description: 'Professional Detailed Residential Cleaning, Ensuring Spotless Homes And Healthy Living Spaces.', image: '/assets/img/service-1.jpg', details: 'We raise funds through various channels to support communities in need.' },
+      { title: 'Medical Treatment Help', description: 'Professional Detailed Residential Cleaning, Ensuring Spotless Homes And Healthy Living Spaces.', image: '/assets/img/service-2.jpg', details: 'Providing access to quality healthcare for underserved communities.' },
+      { title: 'Child Medical Research', description: 'Professional Detailed Residential Cleaning, Ensuring Spotless Homes And Healthy Living Spaces.', image: '/assets/img/service-3.jpg', details: 'Investing in research to improve child healthcare outcomes worldwide.' },
+      { title: 'Development Programs', description: 'Professional Detailed Residential Cleaning, Ensuring Spotless Homes And Healthy Living Spaces.', image: '/assets/img/service-4.jpg', details: 'Comprehensive development programs for sustainable community growth.' },
     ];
     for (const service of services) {
       await pool.query(
@@ -44,10 +44,10 @@ async function seedDatabase() {
 
     // Seed projects
     const projects = [
-      { title: 'Child trouble & care', description: 'Netus lorem rutrum arcu dignissim at sit morbi phasellus nascetur eget potenti vestibulum.', image: 'assets/img/project-1.jpg', category: 'Demostic & Transportation', author: 'Athena Jones', tags: 'Data Masters', cost: 'USD 1,50,499' },
-      { title: 'Child trouble & care', description: 'Netus lorem rutrum arcu dignissim at sit morbi phasellus nascetur eget potenti vestibulum.', image: 'assets/img/project-2.jpg', category: 'Demostic & Transportation', author: 'Athena Jones', tags: 'Data Masters', cost: 'USD 2,50,000' },
-      { title: 'Child trouble & care', description: 'Netus lorem rutrum arcu dignissim at sit morbi phasellus nascetur eget potenti vestibulum.', image: 'assets/img/project-3.jpg', category: 'Demostic & Transportation', author: 'Athena Jones', tags: 'Data Masters', cost: 'USD 3,50,000' },
-      { title: 'Child trouble & care', description: 'Netus lorem rutrum arcu dignissim at sit morbi phasellus nascetur eget potenti vestibulum.', image: 'assets/img/project-4.jpg', category: 'Demostic & Transportation', author: 'Athena Jones', tags: 'Data Masters', cost: 'USD 4,50,000' },
+      { title: 'Child trouble & care', description: 'Netus lorem rutrum arcu dignissim at sit morbi phasellus nascetur eget potenti vestibulum.', image: '/assets/img/project-1.jpg', category: 'Demostic & Transportation', author: 'Athena Jones', tags: 'Data Masters', cost: 'USD 1,50,499' },
+      { title: 'Child trouble & care', description: 'Netus lorem rutrum arcu dignissim at sit morbi phasellus nascetur eget potenti vestibulum.', image: '/assets/img/project-2.jpg', category: 'Demostic & Transportation', author: 'Athena Jones', tags: 'Data Masters', cost: 'USD 2,50,000' },
+      { title: 'Child trouble & care', description: 'Netus lorem rutrum arcu dignissim at sit morbi phasellus nascetur eget potenti vestibulum.', image: '/assets/img/project-3.jpg', category: 'Demostic & Transportation', author: 'Athena Jones', tags: 'Data Masters', cost: 'USD 3,50,000' },
+      { title: 'Child trouble & care', description: 'Netus lorem rutrum arcu dignissim at sit morbi phasellus nascetur eget potenti vestibulum.', image: '/assets/img/project-4.jpg', category: 'Demostic & Transportation', author: 'Athena Jones', tags: 'Data Masters', cost: 'USD 4,50,000' },
     ];
     for (const project of projects) {
       await pool.query(
@@ -60,10 +60,10 @@ async function seedDatabase() {
 
     // Seed donations
     const donations = [
-      { title: 'Life Skills for Children in South African peoples', description: 'We work together to make a lasting difference, helping people. With kindness and hard work.', image: 'assets/img/donation-1.jpg', tag: 'Foods', raised: 25000, goal: 30000, summary: 'This campaign aims to provide life skills training for children in South Africa.' },
-      { title: 'Life Skills for Children in South African peoples', description: 'We work together to make a lasting difference, helping people. With kindness and hard work.', image: 'assets/img/donation-2.jpg', tag: 'Foods', raised: 28500, goal: 30000, summary: 'Providing essential education and skills for a better future.' },
-      { title: 'Life Skills for Children in South African peoples', description: 'We work together to make a lasting difference, helping people. With kindness and hard work.', image: 'assets/img/donation-3.jpg', tag: 'Foods', raised: 15000, goal: 30000, summary: 'Building brighter futures through education and support.' },
-      { title: 'Life Skills for Children in South African peoples', description: 'We work together to make a lasting difference, helping people. With kindness and hard work.', image: 'assets/img/donation-4.jpg', tag: 'Foods', raised: 19200, goal: 30000, summary: 'Empowering children with the skills they need to succeed.' },
+      { title: 'Life Skills for Children in South African peoples', description: 'We work together to make a lasting difference, helping people. With kindness and hard work.', image: '/assets/img/donation-1.jpg', tag: 'Foods', raised: 25000, goal: 30000, summary: 'This campaign aims to provide life skills training for children in South Africa.' },
+      { title: 'Life Skills for Children in South African peoples', description: 'We work together to make a lasting difference, helping people. With kindness and hard work.', image: '/assets/img/donation-2.jpg', tag: 'Foods', raised: 28500, goal: 30000, summary: 'Providing essential education and skills for a better future.' },
+      { title: 'Life Skills for Children in South African peoples', description: 'We work together to make a lasting difference, helping people. With kindness and hard work.', image: '/assets/img/donation-3.jpg', tag: 'Foods', raised: 15000, goal: 30000, summary: 'Building brighter futures through education and support.' },
+      { title: 'Life Skills for Children in South African peoples', description: 'We work together to make a lasting difference, helping people. With kindness and hard work.', image: '/assets/img/donation-4.jpg', tag: 'Foods', raised: 19200, goal: 30000, summary: 'Empowering children with the skills they need to succeed.' },
     ];
     for (const donation of donations) {
       await pool.query(
@@ -76,8 +76,8 @@ async function seedDatabase() {
 
     // Seed events
     const events = [
-      { title: 'Manager Disapproved of the Most Recent Work.', description: 'Dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernaturaut.', image: 'assets/img/event-img.jpg', event_date: '2026-07-29', venue: '350 5th Ave New York, NY 118 United States', mission: 'Our mission is to create lasting impact through community engagement.' },
-      { title: 'Annual Charity Gala for Children Education', description: 'Join us for our annual gala supporting children education worldwide.', image: 'assets/img/blog-b-1.jpg', event_date: '2026-08-15', venue: 'Grand Hotel, Philadelphia PA', mission: 'Raising awareness and funds for educational programs.' },
+      { title: 'Manager Disapproved of the Most Recent Work.', description: 'Dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernaturaut.', image: '/assets/img/event-img.jpg', event_date: '2026-07-29', venue: '350 5th Ave New York, NY 118 United States', mission: 'Our mission is to create lasting impact through community engagement.' },
+      { title: 'Annual Charity Gala for Children Education', description: 'Join us for our annual gala supporting children education worldwide.', image: '/assets/img/blog-b-1.jpg', event_date: '2026-08-15', venue: 'Grand Hotel, Philadelphia PA', mission: 'Raising awareness and funds for educational programs.' },
     ];
     for (const event of events) {
       await pool.query(
@@ -90,9 +90,9 @@ async function seedDatabase() {
 
     // Seed blogs
     const blogs = [
-      { title: 'Give Education, It\'s The Best Gift Ever.', excerpt: 'When to Use Lorem Ipsum generally, lorem ipsum is best suited to keeping template.', content: '<p>When to Use Lorem Ipsum generally, lorem ipsum is best suited to keeping template fo looking bare or minimizing the distractions of the draft copy.</p><p>One of the most remarkable applications of AI in healthcare is in diagnostics.</p>', image: 'assets/img/blog-1.jpg', author: 'Admin', category: 'Donation', tags: 'Reseller, Hosting' },
-      { title: 'Don\'t treat oceans as universal garbage cans', excerpt: 'When to Use Lorem Ipsum generally, lorem ipsum is best suited to keeping template.', content: '<p>When to Use Lorem Ipsum generally, lorem ipsum is best suited to keeping template fo looking bare or minimizing the distractions of the draft copy.</p>', image: 'assets/img/blog-2.jpg', author: 'Admin', category: 'Donation', tags: 'WP Hosting' },
-      { title: 'The sun and the sand makes beaches beautiful', excerpt: 'When to Use Lorem Ipsum generally, lorem ipsum is best suited to keeping template.', content: '<p>When to Use Lorem Ipsum generally, lorem ipsum is best suited to keeping template fo looking bare or minimizing the distractions of the draft copy.</p>', image: 'assets/img/blog-3.jpg', author: 'Admin', category: 'Donation', tags: 'Hosting' },
+      { title: 'Give Education, It\'s The Best Gift Ever.', excerpt: 'When to Use Lorem Ipsum generally, lorem ipsum is best suited to keeping template.', content: '<p>When to Use Lorem Ipsum generally, lorem ipsum is best suited to keeping template fo looking bare or minimizing the distractions of the draft copy.</p><p>One of the most remarkable applications of AI in healthcare is in diagnostics.</p>', image: '/assets/img/blog-1.jpg', author: 'Admin', category: 'Donation', tags: 'Reseller, Hosting' },
+      { title: 'Don\'t treat oceans as universal garbage cans', excerpt: 'When to Use Lorem Ipsum generally, lorem ipsum is best suited to keeping template.', content: '<p>When to Use Lorem Ipsum generally, lorem ipsum is best suited to keeping template fo looking bare or minimizing the distractions of the draft copy.</p>', image: '/assets/img/blog-2.jpg', author: 'Admin', category: 'Donation', tags: 'WP Hosting' },
+      { title: 'The sun and the sand makes beaches beautiful', excerpt: 'When to Use Lorem Ipsum generally, lorem ipsum is best suited to keeping template.', content: '<p>When to Use Lorem Ipsum generally, lorem ipsum is best suited to keeping template fo looking bare or minimizing the distractions of the draft copy.</p>', image: '/assets/img/blog-3.jpg', author: 'Admin', category: 'Donation', tags: 'Hosting' },
     ];
     for (const blog of blogs) {
       await pool.query(
@@ -130,8 +130,8 @@ async function seedDatabase() {
 
     // Seed testimonials
     const testimonials = [
-      { reviewer_name: 'Esther Howard', reviewer_role: 'Web Designer', reviewer_image: 'assets/img/reviewer-1.png', review_text: 'Climb it see the world, not so the world can see you. This is due to their excellent service. They are a seamless team to work with.', rating: 4.9 },
-      { reviewer_name: 'Daniyel Karlos', reviewer_role: 'Web Designer', reviewer_image: 'assets/img/reviewer-2.png', review_text: 'Climb it see the world, not so the world can see you. This is due to their excellent service. They are a seamless team to work with.', rating: 4.8 },
+      { reviewer_name: 'Esther Howard', reviewer_role: 'Web Designer', reviewer_image: '/assets/img/reviewer-1.png', review_text: 'Climb it see the world, not so the world can see you. This is due to their excellent service. They are a seamless team to work with.', rating: 4.9 },
+      { reviewer_name: 'Daniyel Karlos', reviewer_role: 'Web Designer', reviewer_image: '/assets/img/reviewer-2.png', review_text: 'Climb it see the world, not so the world can see you. This is due to their excellent service. They are a seamless team to work with.', rating: 4.8 },
     ];
     for (const t of testimonials) {
       await pool.query(

@@ -30,7 +30,7 @@ router.post('/', upload.single('file'), async (req, res) => {
         Key: filename,
         Body: req.file.buffer,
         ContentType: req.file.mimetype,
-        ACL: 'public-read',
+        // ACL: "public-read",
       },
     });
 

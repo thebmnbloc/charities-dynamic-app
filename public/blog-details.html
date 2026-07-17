@@ -63,6 +63,37 @@
       </div>
       <div id="newsletter-error" style="display: none; color: #dc2626; padding: 10px; text-align: center; margin-top: 10px;"></div>
     </form>
+<script>
+document.getElementById('newsletter-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  var emailInput = document.getElementById('newsletter-email');
+  var successMsg = document.getElementById('newsletter-success');
+  var errorMsg = document.getElementById('newsletter-error');
+  var submitBtn = this.querySelector('button[type="submit"]');
+  var email = emailInput.value.trim();
+  if (!email) return;
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<i class="flaticon-fast-forward-double-right-arrows-symbol"></i> Subscribing...';
+  successMsg.style.display = 'none';
+  if (errorMsg) errorMsg.style.display = 'none';
+  try {
+    var res = await fetch('/api/subscribers', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email }) });
+    var data = await res.json();
+    if (res.ok) {
+      successMsg.style.display = 'block';
+      emailInput.value = '';
+    } else if (res.status === 409 && data.error === 'already_subscribed') {
+      if (errorMsg) { errorMsg.textContent = 'This email is already subscribed.'; errorMsg.style.display = 'block'; }
+    } else {
+      if (errorMsg) { errorMsg.textContent = 'Something went wrong. Please try again.'; errorMsg.style.display = 'block'; }
+    }
+  } catch(err) {
+    if (errorMsg) { errorMsg.textContent = 'Network error. Please try again.'; errorMsg.style.display = 'block'; }
+  }
+  submitBtn.disabled = false;
+  submitBtn.innerHTML = '<i class="flaticon-fast-forward-double-right-arrows-symbol"></i> Subscribe';
+});
+</script>
   </div>
 </section>
 
@@ -92,7 +123,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     const d = new Date(b.created_at);
     content.innerHTML = `
       <div class="ul-blog-inner">
-        <div class="ul-blog-img"><img src="/${b.image}" alt="${b.title}"></div>
+        <div class="ul-blog-img"><img src="${b.image}" alt="${b.title}"></div>
         <div class="ul-blog-txt">
           <div class="ul-blog-infos" style="border: none; gap: 20px; margin-bottom: 10px;">
             <div class="ul-blog-info" style="padding: 0; border: none; width: auto;"><i class="flaticon-user"></i> ${b.author || 'Admin'}</div>
@@ -112,7 +143,7 @@ document.addEventListener('DOMContentLoaded', async function() {
           <h4 class="ul-inner-sidebar-widget-title">Recent Posts</h4>
           ${allBlogs.slice(0, 5).map(ob => `
             <div class="ul-inner-sidebar-post">
-              <div class="img"><a href="/blog?id=${ob.id}"><img src="/${ob.image}" alt="${ob.title}"></a></div>
+              <div class="img"><a href="/blog?id=${ob.id}"><img src="${ob.image}" alt="${ob.title}"></a></div>
               <div>
                 <div class="date"><span class="icon"><i class="flaticon-calendar"></i></span> ${new Date(ob.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</div>
                 <h5 class="title"><a href="/blog?id=${ob.id}">${ob.title}</a></h5>
