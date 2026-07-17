@@ -15,12 +15,12 @@
     <div class="ul-header-bottom-wrapper ul-header-container">
       <div class="logo-container"><a href="/" class="d-inline-block"><img src="/assets/img/logo.svg" alt="logo" class="logo"></a></div>
       <div class="ul-header-nav-wrapper"><div class="to-go-to-sidebar-in-mobile"><nav class="ul-header-nav">
-        <div class="has-sub-menu"><a role="button">Home</a><div class="ul-header-submenu"><ul><li><a href="/">Home</a></li></ul></div></div>
+        <a href="/">Home</a>
         <a href="/about">About</a>
         <div class="has-sub-menu"><a role="button">Pages</a><div class="ul-header-submenu"><ul><li><a href="/services">Services</a></li><li><a href="/projects">Projects</a></li><li><a href="/team">Team</a></li><li><a href="/pricing">Pricing Plans</a></li><li><a href="/faq">FAQs</a></li></ul></div></div>
-        <div class="has-sub-menu"><a role="button">Donation</a><div class="ul-header-submenu"><ul><li><a href="/donations">Donation Listing</a></li></ul></div></div>
-        <div class="has-sub-menu"><a role="button">Event</a><div class="ul-header-submenu"><ul><li><a href="/events">Events</a></li></ul></div></div>
-        <div class="has-sub-menu"><a role="button">Blog</a><div class="ul-header-submenu"><ul><li><a href="/blog">Blogs</a></li></ul></div></div>
+        <a href="/donations">Donation</a>
+        <a href="/events">Event</a>
+        <a href="/blog">Blog</a>
         <a href="/contact">Contact</a>
       </nav></div></div>
       <div class="ul-header-actions">
@@ -81,6 +81,7 @@
       <div id="newsletter-success" style="display: none; color: var(--ul-primary); padding: 10px; text-align: center; margin-top: 10px;">
         Thank you for subscribing!
       </div>
+      <div id="newsletter-error" style="display: none; color: #dc2626; padding: 10px; text-align: center; margin-top: 10px;"></div>
     </form>
   </div>
 </section>
@@ -106,14 +107,6 @@ document.getElementById('contact-form').addEventListener('submit', async functio
     const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
     if (res.ok) { form.style.display = 'none'; document.getElementById('contact-success').style.display = 'block'; }
   } catch(e) { alert('Error sending message. Please try again.'); }
-});
-document.getElementById('newsletter-form').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const email = document.getElementById('newsletter-email').value;
-  try {
-    const res = await fetch('/api/subscribers', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email }) });
-    if (res.ok) { document.getElementById('newsletter-success').style.display = 'block'; document.getElementById('newsletter-email').value = ''; }
-  } catch(e) { alert('Error subscribing. Please try again.'); }
 });
 </script>
 </body>

@@ -77,6 +77,16 @@ tr:hover{background:#f8fafc}
 .empty{padding:40px;text-align:center;color:var(--text-light)}
 .table-wrap{overflow-x:auto}
 
+.upload-area{border:2px dashed var(--border);border-radius:var(--radius);padding:16px;text-align:center;cursor:pointer;transition:border-color .2s;position:relative}
+.upload-area:hover,.upload-area.dragover{border-color:var(--primary);background:rgba(79,70,229,.03)}
+.upload-area input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
+.upload-area p{font-size:13px;color:var(--text-light);margin:0}
+.upload-area .upload-icon{font-size:28px;margin-bottom:6px;display:block}
+.upload-preview{margin-top:10px;display:none}
+.upload-preview img{max-width:120px;max-height:80px;border-radius:var(--radius);object-fit:cover}
+.upload-preview.has-file{display:block}
+.upload-filename{font-size:12px;color:var(--text-light);margin-top:4px}
+
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
 .modal-overlay.show{display:flex}
 .modal{background:var(--card);border-radius:12px;width:100%;max-width:600px;max-height:90vh;overflow-y:auto;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
@@ -255,6 +265,18 @@ tr:hover{background:#f8fafc}
 </div>
 </div>
 
+<div class="modal-overlay" id="confirm-overlay">
+<div class="modal" style="max-width:420px;text-align:center">
+<div style="font-size:48px;margin-bottom:12px">&#9888;</div>
+<h3 id="confirm-title" style="margin-bottom:8px">Are you sure?</h3>
+<p id="confirm-message" style="color:var(--text-light);margin-bottom:24px;font-size:14px">This action cannot be undone.</p>
+<div style="display:flex;gap:8px;justify-content:center">
+<button class="btn btn-danger" id="confirm-yes">Delete</button>
+<button class="btn btn-outline" id="confirm-no">Cancel</button>
+</div>
+</div>
+</div>
+
 <script>
   // FUNCTIONALITY WITH JAVASCRIPT 
   
@@ -324,6 +346,17 @@ return{ok:r.ok,data:d};
 }catch(e){return{ok:false,data:{error:'Network error'}};}
 }
 
+async function uploadFile(file,folder='uploads'){
+const fd=new FormData();
+fd.append('file',file);
+fd.append('folder',folder);
+const r=await fetch('/api/upload',{method:'POST',credentials:'include',body:fd});
+const d=await r.json().catch(()=>({}));
+return r.ok?d:{error:d.error||'Upload failed'};
+}
+
+const imageFields={team:'team',services:'services',projects:'projects',donations:'donations',events:'events',blogs:'blogs',testimonials:'avatars'};
+
 const endpoints={team:'/api/team',services:'/api/services',projects:'/api/projects',donations:'/api/donations',events:'/api/events',blogs:'/api/blogs',pricing:'/api/pricing',faqs:'/api/faqs',testimonials:'/api/testimonials',contact:'/api/contact',subscribers:'/api/subscribers'};
 
 async function loadSection(sec){
@@ -368,6 +401,7 @@ const extra=renderers[sec]?renderers[sec](r):'';
 let actions='';
 if(sec==='contact'){
 actions=`<div class="actions">
+<button class="btn btn-sm btn-primary" onclick="viewMessage('${esc(r.name)}','${esc(r.email)}','${esc(r.subject||'')}','${esc((r.message||'').replace(/'/g,"\\'").replace(/\n/g,"\\n"))}')">View</button>
 <button class="btn btn-sm btn-outline" onclick="toggleRead('${id}',${!r.is_read})">${r.is_read?'Mark Unread':'Mark Read'}</button>
 <button class="btn btn-sm btn-danger" onclick="deleteItem('contact','${id}')">Delete</button></div>`;
 }else if(sec==='subscribers'){
@@ -390,6 +424,36 @@ document.getElementById('modal-overlay').classList.add('show');
 }
 function closeModal(){document.getElementById('modal-overlay').classList.remove('show');editingId=null;editingType='';}
 
+function showConfirm(title,message){
+return new Promise(resolve=>{
+document.getElementById('confirm-title').textContent=title;
+document.getElementById('confirm-message').textContent=message;
+document.getElementById('confirm-overlay').classList.add('show');
+const yesBtn=document.getElementById('confirm-yes');
+const noBtn=document.getElementById('confirm-no');
+function cleanup(){yesBtn.removeEventListener('click',onYes);noBtn.removeEventListener('click',onNo);document.getElementById('confirm-overlay').classList.remove('show');}
+function onYes(){cleanup();resolve(true);}
+function onNo(){cleanup();resolve(false);}
+yesBtn.addEventListener('click',onYes);
+noBtn.addEventListener('click',onNo);
+});
+}
+
+function viewMessage(name,email,subject,message){
+document.getElementById('modal-title').textContent='Message from '+name;
+document.getElementById('modal-body').innerHTML=`
+<div style="margin-bottom:16px">
+<div style="display:flex;gap:16px;margin-bottom:12px;flex-wrap:wrap">
+<div><strong>From:</strong> ${esc(name)}</div>
+<div><strong>Email:</strong> <a href="mailto:${esc(email)}">${esc(email)}</a></div>
+</div>
+${subject?`<div style="margin-bottom:12px"><strong>Subject:</strong> ${esc(subject)}</div>`:''}
+</div>
+<div style="background:var(--bg);padding:16px;border-radius:var(--radius);white-space:pre-wrap;line-height:1.6">${esc(message).replace(/\n/g,'<br>')}</div>
+<div class="form-actions" style="margin-top:16px"><button class="btn btn-outline" onclick="closeModal()">Close</button></div>`;
+document.getElementById('modal-overlay').classList.add('show');
+}
+
 const schemas={
 team:[
 {name:'name',label:'Name',type:'text',required:true},
@@ -397,7 +461,7 @@ team:[
 {name:'email',label:'Email',type:'email'},
 {name:'phone',label:'Phone',type:'text'},
 {name:'bio',label:'Bio',type:'textarea'},
-{name:'image',label:'Image URL',type:'text'},
+{name:'image',label:'Profile Image',type:'image'},
 {name:'facebook',label:'Facebook URL',type:'text'},
 {name:'twitter',label:'Twitter URL',type:'text'},
 {name:'linkedin',label:'LinkedIn URL',type:'text'},
@@ -406,13 +470,13 @@ team:[
 services:[
 {name:'title',label:'Title',type:'text',required:true},
 {name:'description',label:'Description',type:'textarea'},
-{name:'image',label:'Image URL',type:'text'},
+{name:'image',label:'Service Image',type:'image'},
 {name:'details',label:'Details',type:'textarea'}
 ],
 projects:[
 {name:'title',label:'Title',type:'text',required:true},
 {name:'description',label:'Description',type:'textarea'},
-{name:'image',label:'Image URL',type:'text'},
+{name:'image',label:'Project Image',type:'image'},
 {name:'category',label:'Category',type:'text'},
 {name:'author',label:'Author',type:'text'},
 {name:'tags',label:'Tags',type:'text'},
@@ -422,7 +486,7 @@ projects:[
 donations:[
 {name:'title',label:'Title',type:'text',required:true},
 {name:'description',label:'Description',type:'textarea'},
-{name:'image',label:'Image URL',type:'text'},
+{name:'image',label:'Donation Image',type:'image'},
 {name:'tag',label:'Tag',type:'text'},
 {name:'raised',label:'Raised Amount',type:'number'},
 {name:'goal',label:'Goal Amount',type:'number'},
@@ -431,7 +495,7 @@ donations:[
 events:[
 {name:'title',label:'Title',type:'text',required:true},
 {name:'description',label:'Description',type:'textarea'},
-{name:'image',label:'Image URL',type:'text'},
+{name:'image',label:'Event Image',type:'image'},
 {name:'event_date',label:'Event Date',type:'date'},
 {name:'venue',label:'Venue',type:'text'},
 {name:'mission',label:'Mission',type:'textarea'}
@@ -440,7 +504,7 @@ blogs:[
 {name:'title',label:'Title',type:'text',required:true},
 {name:'excerpt',label:'Excerpt',type:'textarea'},
 {name:'content',label:'Content',type:'textarea'},
-{name:'image',label:'Image URL',type:'text'},
+{name:'image',label:'Blog Image',type:'image'},
 {name:'author',label:'Author',type:'text'},
 {name:'category',label:'Category',type:'text'},
 {name:'tags',label:'Tags',type:'text'},
@@ -461,7 +525,7 @@ faqs:[
 testimonials:[
 {name:'reviewer_name',label:'Reviewer Name',type:'text',required:true},
 {name:'reviewer_role',label:'Reviewer Role',type:'text'},
-{name:'reviewer_image',label:'Reviewer Image URL',type:'text'},
+{name:'reviewer_image',label:'Reviewer Image',type:'image'},
 {name:'review_text',label:'Review Text',type:'textarea'},
 {name:'rating',label:'Rating (1-5)',type:'number'}
 ]
@@ -469,15 +533,27 @@ testimonials:[
 
 function getFormHTML(type,item){
 const fields=schemas[type]||[];
+const imgFields=['image','reviewer_image'];
 let html='<div class="form-row'+(fields.length>3?' three':'')+'">';
 fields.forEach(f=>{
 const val=item?(item[f.name]??''):'';
 const checked=f.type==='checkbox'?(val?'checked':''):'';
-const wide=f.type==='textarea'?'grid-column:1/-1;':'';
+const wide=f.type==='textarea'||f.type==='image'?'grid-column:1/-1;':'';
 if(f.type==='checkbox'){
 html+=`<div class="form-group" style="${wide}"><label style="display:flex;align-items:center;gap:8px"><input type="checkbox" id="f-${f.name}" ${checked} style="width:auto"> ${f.label}</label></div>`;
 }else if(f.type==='select'){
 html+=`<div class="form-group" style="${wide}"><label>${f.label}</label><select id="f-${f.name}">${(f.options||[]).map(o=>`<option value="${o}"${val===o?' selected':''}>${o}</option>`).join('')}</select></div>`;
+}else if(f.type==='image'){
+html+=`<div class="form-group" style="${wide}"><label>${f.label}</label>
+<div class="upload-area" id="upload-${f.name}" onclick="document.getElementById('file-${f.name}').click()">
+<span class="upload-icon">&#128247;</span>
+<p>Click or drag to upload</p>
+<input type="file" id="file-${f.name}" accept="image/*" onchange="handleUploadPreview('${f.name}',this)">
+</div>
+<div class="upload-preview" id="preview-${f.name}"><img src="" id="img-${f.name}"><div class="upload-filename" id="name-${f.name}"></div></div>
+<input type="hidden" id="f-${f.name}" value="${esc(String(val))}">
+${val?`<div style="margin-top:6px"><small style="color:var(--text-light)">Current: </small><a href="${esc(String(val))}" target="_blank" style="font-size:12px">View image</a></div>`:''}
+</div>`;
 }else{
 const displayVal=f.name==='features'&&Array.isArray(val)?JSON.stringify(val):String(val);
 html+=`<div class="form-group" style="${wide}"><label>${f.label}${f.required?' *':''}</label><input type="${f.type==='textarea'?'text':f.type}" id="f-${f.name}" value="${esc(displayVal)}"${f.required?' required':''}></div>`;
@@ -487,21 +563,53 @@ html+='</div><div class="form-actions"><button class="btn btn-primary" onclick="
 return html;
 }
 
+function handleUploadPreview(name,input){
+const file=input.files[0];
+if(!file)return;
+const reader=new FileReader();
+reader.onload=e=>{
+document.getElementById('img-'+name).src=e.target.result;
+document.getElementById('name-'+name).textContent=file.name;
+document.getElementById('preview-'+name).classList.add('has-file');
+};
+reader.readAsDataURL(file);
+}
+
 async function saveItem(){
 const fields=schemas[editingType]||[];
 const body={};
-fields.forEach(f=>{
+const uploads=[];
+
+for(const f of fields){
 if(f.type==='checkbox'){body[f.name]=document.getElementById('f-'+f.name)?.checked||false;}
 else if(f.type==='number'){const v=document.getElementById('f-'+f.name)?.value;body[f.name]=v?Number(v):null;}
+else if(f.type==='image'){
+const fileInput=document.getElementById('file-'+f.name);
+const hiddenInput=document.getElementById('f-'+f.name);
+if(fileInput&&fileInput.files.length>0){
+uploads.push({field:f.name,file:fileInput.files[0]});
+body[f.name]=hiddenInput.value||'';
+}else{
+body[f.name]=hiddenInput?.value||'';
+}
+}
 else if(f.name==='features'){
 try{body[f.name]=JSON.parse(document.getElementById('f-'+f.name)?.value||'[]');}
 catch(e){body[f.name]=[];}
 }
 else{body[f.name]=document.getElementById('f-'+f.name)?.value||'';}
-});
+}
 if(!editingId){body.is_active=true;body.sort_order=0;}
 if(body.is_active===undefined||body.is_active===null)body.is_active=true;
 if(body.sort_order===undefined||body.sort_order===null)body.sort_order=0;
+
+for(const u of uploads){
+const folder=editingType==='testimonials'?'avatars':editingType;
+const result=await uploadFile(u.file,folder);
+if(result.url){body[u.field]=result.url;}
+else{toast('Image upload failed: '+result.error,'error');return;}
+}
+
 const url=editingId?`${endpoints[editingType]}/${editingId}`:endpoints[editingType];
 const method=editingId?'PUT':'POST';
 const{ok,data}=await api(url,{method,headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
@@ -509,7 +617,8 @@ if(ok){toast(editingId?'Updated successfully':'Created successfully');closeModal
 else{toast(data.error||'Save failed','error');}
 }
 async function deleteItem(type,id){
-if(!confirm('Are you sure you want to delete this item?'))return;
+const confirmed=await showConfirm('Delete Item','Are you sure you want to delete this item? This cannot be undone.');
+if(!confirmed)return;
 const{ok,data}=await api(`${endpoints[type]}/${id}`,{method:'DELETE'});
 if(ok){toast('Deleted successfully');loadSection(type);loadOverview();}
 else{toast(data.error||'Delete failed','error');}

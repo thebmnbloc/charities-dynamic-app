@@ -15,12 +15,12 @@
     <div class="ul-header-bottom-wrapper ul-header-container">
       <div class="logo-container"><a href="/" class="d-inline-block"><img src="/assets/img/logo.svg" alt="logo" class="logo"></a></div>
       <div class="ul-header-nav-wrapper"><div class="to-go-to-sidebar-in-mobile"><nav class="ul-header-nav">
-        <div class="has-sub-menu"><a role="button">Home</a><div class="ul-header-submenu"><ul><li><a href="/">Home</a></li></ul></div></div>
+        <a href="/">Home</a>
         <a href="/about">About</a>
         <div class="has-sub-menu"><a role="button">Pages</a><div class="ul-header-submenu"><ul><li><a href="/services">Services</a></li><li><a href="/projects">Projects</a></li><li><a href="/team">Team</a></li><li><a href="/pricing">Pricing Plans</a></li><li><a href="/faq">FAQs</a></li></ul></div></div>
-        <div class="has-sub-menu"><a role="button">Donation</a><div class="ul-header-submenu"><ul><li><a href="/donations">Donation Listing</a></li></ul></div></div>
-        <div class="has-sub-menu"><a role="button">Event</a><div class="ul-header-submenu"><ul><li><a href="/events">Events</a></li></ul></div></div>
-        <div class="has-sub-menu"><a role="button">Blog</a><div class="ul-header-submenu"><ul><li><a href="/blog">Blogs</a></li></ul></div></div>
+        <a href="/donations">Donation</a>
+        <a href="/events">Event</a>
+        <a href="/blog">Blog</a>
         <a href="/contact">Contact</a>
       </nav></div></div>
       <div class="ul-header-actions">
@@ -46,6 +46,25 @@
     </div>
     <div class="row" id="pricing-grid" style="--bs-gutter-x: clamp(15px, 1.58vw, 30px); --bs-gutter-y: clamp(15px, 1.58vw, 30px); justify-content: center;">
     </div>
+  </div>
+</section>
+
+<section class="ul-section-spacing" style="background: var(--ul-gray3);">
+  <div class="ul-container">
+    <div style="text-align: center; margin-bottom: clamp(30px, 3.15vw, 60px);">
+      <span class="ul-section-sub-title"><i class="flaticon-fast-forward-double-right-arrows-symbol"></i> Newsletter</span>
+      <h2 class="ul-section-title">Subscribe To Our Newsletter</h2>
+    </div>
+    <form id="newsletter-form" style="max-width: 500px; margin: 0 auto;">
+      <div style="display: flex; gap: 10px;">
+        <input type="email" id="newsletter-email" placeholder="Enter your email" required style="flex: 1; height: 50px; border: 1px solid #ddd; border-radius: 999px; padding: 0 20px;">
+        <button type="submit" class="ul-btn"><i class="flaticon-fast-forward-double-right-arrows-symbol"></i> Subscribe</button>
+      </div>
+      <div id="newsletter-success" style="display: none; color: var(--ul-primary); padding: 10px; text-align: center; margin-top: 10px;">
+        Thank you for subscribing!
+      </div>
+      <div id="newsletter-error" style="display: none; color: #dc2626; padding: 10px; text-align: center; margin-top: 10px;"></div>
+    </form>
   </div>
 </section>
 

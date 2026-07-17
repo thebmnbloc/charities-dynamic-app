@@ -1008,4 +1008,60 @@ document.addEventListener("DOMContentLoaded", (event) => {
     // footer copyright text year
     const footerYear = document.getElementById("footer-copyright-year");
     if (footerYear) footerYear.textContent = new Date().getFullYear();
+
+    // newsletter subscription
+    const newsletterForm = document.getElementById('newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const emailInput = document.getElementById('newsletter-email');
+            const successMsg = document.getElementById('newsletter-success');
+            const errorMsg = document.getElementById('newsletter-error');
+            const submitBtn = newsletterForm.querySelector('button[type="submit"]');
+            const email = emailInput.value.trim();
+
+            if (!email) return;
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="flaticon-fast-forward-double-right-arrows-symbol"></i> Subscribing...';
+            successMsg.style.display = 'none';
+            if (errorMsg) errorMsg.style.display = 'none';
+
+            try {
+                const res = await fetch('/api/subscribers', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+                const data = await res.json();
+
+                if (res.ok) {
+                    successMsg.style.display = 'block';
+                    if (errorMsg) errorMsg.style.display = 'none';
+                    emailInput.value = '';
+                } else if (res.status === 409 && data.error === 'already_subscribed') {
+                    if (errorMsg) {
+                        errorMsg.textContent = 'This email is already subscribed.';
+                        errorMsg.style.display = 'block';
+                    }
+                    successMsg.style.display = 'none';
+                } else {
+                    if (errorMsg) {
+                        errorMsg.textContent = 'Something went wrong. Please try again.';
+                        errorMsg.style.display = 'block';
+                    }
+                    successMsg.style.display = 'none';
+                }
+            } catch(e) {
+                if (errorMsg) {
+                    errorMsg.textContent = 'Network error. Please try again.';
+                    errorMsg.style.display = 'block';
+                }
+                successMsg.style.display = 'none';
+            }
+
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="flaticon-fast-forward-double-right-arrows-symbol"></i> Subscribe';
+        });
+    }
 });

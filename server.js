@@ -37,6 +37,7 @@ app.use('/api/testimonials', require('./api/routes/testimonials'));
 app.use('/api/contact', require('./api/routes/contact'));
 app.use('/api/subscribers', require('./api/routes/subscribers'));
 app.use('/api/settings', require('./api/routes/settings'));
+app.use('/api/upload', require('./api/routes/upload'));
 
 // Serve public HTML pages
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public/index.html')));

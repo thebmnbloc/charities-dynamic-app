@@ -18,6 +18,13 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const { email } = req.body;
+    if (!email) return res.status(400).json({ error: 'Email is required' });
+
+    const existing = await pool.query('SELECT id FROM subscribers WHERE email = $1', [email]);
+    if (existing.rows.length > 0) {
+      return res.status(409).json({ error: 'already_subscribed' });
+    }
+
     const result = await pool.query(
       `INSERT INTO subscribers (email) VALUES ($1) RETURNING *`,
       [email]
