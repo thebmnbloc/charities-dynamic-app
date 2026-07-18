@@ -98,6 +98,23 @@ tr:hover{background:#f8fafc}
 .toast.success{background:var(--success)}
 .toast.error{background:var(--danger)}
 
+.spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:6px}
+.spinner.dark{border-color:rgba(0,0,0,.1);border-top-color:var(--primary)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.btn.loading{pointer-events:none;opacity:.7}
+.btn.loading .spinner{display:inline-block}
+
+.modal-loading{position:absolute;inset:0;background:rgba(255,255,255,.85);display:none;align-items:center;justify-content:center;flex-direction:column;gap:12px;border-radius:12px;z-index:10}
+.modal-loading.show{display:flex}
+.modal-loading .spinner{width:32px;height:32px;border-width:3px}
+.modal-loading p{font-size:14px;color:var(--text-light);font-weight:500}
+
+.upload-progress{margin-top:8px;display:none}
+.upload-progress.show{display:block}
+.upload-progress-bar{height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.upload-progress-fill{height:100%;background:var(--primary);width:0%;transition:width .3s;border-radius:3px}
+.upload-progress-text{font-size:11px;color:var(--text-light);margin-top:4px}
+
 @media(max-width:768px){
 .sidebar{transform:translateX(-100%)}
 .sidebar.open{transform:translateX(0)}
@@ -258,7 +275,8 @@ tr:hover{background:#f8fafc}
 </div>
 
 <div class="modal-overlay" id="modal-overlay" onclick="if(event.target===this)closeModal()">
-<div class="modal">
+<div class="modal" style="position:relative">
+<div class="modal-loading" id="modal-loading"><div class="spinner"></div><p id="modal-loading-text">Saving...</p></div>
 <button class="modal-close" onclick="closeModal()">&times;</button>
 <h3 id="modal-title"></h3>
 <div id="modal-body"></div>
@@ -346,13 +364,41 @@ return{ok:r.ok,data:d};
 }catch(e){return{ok:false,data:{error:'Network error'}};}
 }
 
-async function uploadFile(file,folder='uploads'){
+async function uploadFile(file,folder='uploads',fieldName){
+return new Promise((resolve)=>{
 const fd=new FormData();
 fd.append('file',file);
 fd.append('folder',folder);
-const r=await fetch('/api/upload',{method:'POST',credentials:'include',body:fd});
-const d=await r.json().catch(()=>({}));
-return r.ok?d:{error:d.error||'Upload failed'};
+const xhr=new XMLHttpRequest();
+const progressEl=fieldName?document.getElementById('progress-'+fieldName):null;
+const fillEl=fieldName?document.getElementById('progress-fill-'+fieldName):null;
+const textEl=fieldName?document.getElementById('progress-text-'+fieldName):null;
+if(progressEl)progressEl.classList.add('show');
+xhr.upload.addEventListener('progress',e=>{
+if(e.lengthComputable){
+const pct=Math.round(e.loaded/e.total*100);
+if(fillEl)fillEl.style.width=pct+'%';
+if(textEl)textEl.textContent=pct<100?'Uploading... '+pct+'%':'Processing...';
+}
+});
+xhr.addEventListener('load',()=>{
+if(progressEl)progressEl.classList.remove('show');
+if(xhr.status>=200&&xhr.status<300){
+try{const d=JSON.parse(xhr.responseText);resolve(d);}
+catch(e){resolve({error:'Invalid response'});}
+}else{
+try{const d=JSON.parse(xhr.responseText);resolve({error:d.error||'Upload failed'});}
+catch(e){resolve({error:'Upload failed'});}
+}
+});
+xhr.addEventListener('error',()=>{
+if(progressEl)progressEl.classList.remove('show');
+resolve({error:'Network error'});
+});
+xhr.open('POST','/api/upload');
+xhr.withCredentials=true;
+xhr.send(fd);
+});
 }
 
 const imageFields={team:'team',services:'services',projects:'projects',donations:'donations',events:'events',blogs:'blogs',testimonials:'avatars'};
@@ -360,6 +406,8 @@ const imageFields={team:'team',services:'services',projects:'projects',donations
 const endpoints={team:'/api/team',services:'/api/services',projects:'/api/projects',donations:'/api/donations',events:'/api/events',blogs:'/api/blogs',pricing:'/api/pricing',faqs:'/api/faqs',testimonials:'/api/testimonials',contact:'/api/contact',subscribers:'/api/subscribers'};
 
 async function loadSection(sec){
+const tbody=document.getElementById('tbl-'+sec);
+if(tbody)tbody.innerHTML='<tr><td colspan="10" style="text-align:center;padding:30px"><div class="spinner dark" style="width:24px;height:24px;border-width:3px"></div></td></tr>';
 const{ok,data}=await api(endpoints[sec]);
 const items=Array.isArray(data)?data:(data.items||data.data||[]);
 renderTable(sec,items);
@@ -420,9 +468,10 @@ function openModal(type,item){
 editingType=type;editingId=item?item.id:null;
 document.getElementById('modal-title').textContent=(editingId?'Edit':'Add')+' '+type.charAt(0).toUpperCase()+type.slice(1);
 document.getElementById('modal-body').innerHTML=getFormHTML(type,item);
+document.getElementById('modal-loading').classList.remove('show');
 document.getElementById('modal-overlay').classList.add('show');
 }
-function closeModal(){document.getElementById('modal-overlay').classList.remove('show');editingId=null;editingType='';}
+function closeModal(){document.getElementById('modal-overlay').classList.remove('show');document.getElementById('modal-loading').classList.remove('show');editingId=null;editingType='';}
 
 function showConfirm(title,message){
 return new Promise(resolve=>{
@@ -550,6 +599,7 @@ html+=`<div class="form-group" style="${wide}"><label>${f.label}</label>
 <p>Click or drag to upload</p>
 <input type="file" id="file-${f.name}" accept="image/*" onchange="handleUploadPreview('${f.name}',this)">
 </div>
+<div class="upload-progress" id="progress-${f.name}"><div class="upload-progress-bar"><div class="upload-progress-fill" id="progress-fill-${f.name}"></div></div><div class="upload-progress-text" id="progress-text-${f.name}"></div></div>
 <div class="upload-preview" id="preview-${f.name}"><img src="" id="img-${f.name}"><div class="upload-filename" id="name-${f.name}"></div></div>
 <input type="hidden" id="f-${f.name}" value="${esc(String(val))}">
 ${val?`<div style="margin-top:6px"><small style="color:var(--text-light)">Current: </small><a href="${esc(String(val))}" target="_blank" style="font-size:12px">View image</a></div>`:''}
@@ -559,7 +609,7 @@ const displayVal=f.name==='features'&&Array.isArray(val)?JSON.stringify(val):Str
 html+=`<div class="form-group" style="${wide}"><label>${f.label}${f.required?' *':''}</label><input type="${f.type==='textarea'?'text':f.type}" id="f-${f.name}" value="${esc(displayVal)}"${f.required?' required':''}></div>`;
 }
 });
-html+='</div><div class="form-actions"><button class="btn btn-primary" onclick="saveItem()">'+(editingId?'Update':'Create')+'</button><button class="btn btn-outline" onclick="closeModal()">Cancel</button></div>';
+html+='</div><div class="form-actions"><button class="btn btn-primary" id="save-btn" onclick="saveItem()">'+(editingId?'<span class="spinner" style="display:none"></span>Update':'<span class="spinner" style="display:none"></span>Create')+'</button><button class="btn btn-outline" onclick="closeModal()">Cancel</button></div>';
 return html;
 }
 
@@ -603,16 +653,42 @@ if(!editingId){body.is_active=true;body.sort_order=0;}
 if(body.is_active===undefined||body.is_active===null)body.is_active=true;
 if(body.sort_order===undefined||body.sort_order===null)body.sort_order=0;
 
-for(const u of uploads){
-const folder=editingType==='testimonials'?'avatars':editingType;
-const result=await uploadFile(u.file,folder);
-if(result.url){body[u.field]=result.url;}
-else{toast('Image upload failed: '+result.error,'error');return;}
+const saveBtn=document.getElementById('save-btn');
+const saveBtnSpinner=saveBtn?.querySelector('.spinner');
+const modalLoading=document.getElementById('modal-loading');
+const modalLoadingText=document.getElementById('modal-loading-text');
+
+if(uploads.length>0){
+saveBtn?.classList.add('loading');
+if(saveBtnSpinner)saveBtnSpinner.style.display='inline-block';
+if(modalLoadingText)modalLoadingText.textContent='Uploading images...';
 }
+
+for(let i=0;i<uploads.length;i++){
+const u=uploads[i];
+const folder=editingType==='testimonials'?'avatars':editingType;
+if(modalLoadingText)modalLoadingText.textContent='Uploading '+(uploads.length>1?(i+1)+'/'+uploads.length+'...':'image...');
+const result=await uploadFile(u.file,folder,u.field);
+if(result.url){body[u.field]=result.url;}
+else{
+saveBtn?.classList.remove('loading');
+if(saveBtnSpinner)saveBtnSpinner.style.display='none';
+toast('Image upload failed: '+result.error,'error');
+return;
+}
+}
+
+if(modalLoadingText)modalLoadingText.textContent=editingId?'Updating...':'Creating...';
+saveBtn?.classList.add('loading');
+if(saveBtnSpinner)saveBtnSpinner.style.display='inline-block';
 
 const url=editingId?`${endpoints[editingType]}/${editingId}`:endpoints[editingType];
 const method=editingId?'PUT':'POST';
 const{ok,data}=await api(url,{method,headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+
+saveBtn?.classList.remove('loading');
+if(saveBtnSpinner)saveBtnSpinner.style.display='none';
+
 if(ok){toast(editingId?'Updated successfully':'Created successfully');closeModal();loadSection(editingType);loadOverview();}
 else{toast(data.error||'Save failed','error');}
 }
@@ -624,6 +700,8 @@ if(ok){toast('Deleted successfully');loadSection(type);loadOverview();}
 else{toast(data.error||'Delete failed','error');}
 }
 async function editItem(type,id){
+const tbody=document.getElementById('tbl-'+type);
+if(tbody)tbody.innerHTML='<tr><td colspan="10" style="text-align:center;padding:30px"><div class="spinner dark" style="width:24px;height:24px;border-width:3px"></div></td></tr>';
 const{ok,data}=await api(`${endpoints[type]}/${id}`);
 if(ok){const item=data.item||data;openModal(type,item);}
 else{toast('Failed to load item','error');}
